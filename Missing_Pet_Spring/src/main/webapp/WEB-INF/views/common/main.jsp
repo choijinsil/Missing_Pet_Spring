@@ -104,27 +104,27 @@
 
 	<div class="header">
 		<div class="wrap">
-			<a href="http://incoding.kr" class="logo">
+			<a href="" class="logo">
 				<img src="/images/cat.png"/>
 			</a>
 			<c:choose>
 				<c:when test="${loginId eq null }">
-					<a href="main?action=joinForm" class="logo" style="color: black;">회원 가입 </a> 
-					<a href="main?action=loginForm" class="logo" style="color: black;">로그인</a>
+					<a href="main/join" class="logo" style="color: black;">회원 가입 </a> 
+					<a href="main/login" class="logo" style="color: black;">로그인</a>
 				</c:when>
 				
 				<c:when test="${loginId eq 'admin'}">
-					<a href="admin?action=admin" class="logo" style="color: black;">관리자페이지로 이동</a>
-					<a href="main?action=loginOut" class="logo" style="color: black;">로그아웃</a>
+					<a href="admin" class="logo" style="color: black;">관리자페이지로 이동</a>
+					<a href="main/loginOut" class="logo" style="color: black;">로그아웃</a>
 				</c:when>
 				
 				<c:otherwise>
 					<a class="logo" style="color: black">
 						<font color="green">${loginId }</font>님 환영합니다.~^^
 					</a>
-					<a href="pet?action=registerForm" class="logo" style="color: black;">동물등록</a>
-					<a href="main?action=user_mypage" class="logo" style="color: black;">마이페이지</a> 
-					<a href="main?action=loginOut" class="logo" style="color: black;">로그아웃</a>
+					<a href="pet/register" class="logo" style="color: black;">동물등록</a>
+					<a href="main/user_mypage" class="logo" style="color: black;">마이페이지</a> 
+					<a href="main/loginOut" class="logo" style="color: black;">로그아웃</a>
 				</c:otherwise>
 			</c:choose>
 		</div>
@@ -197,8 +197,9 @@
 	<div class="footerImg"></div>
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7b34394e2d8b59d2f6ccd7212da74043&libraries=services"></script>
+	
 	<script type="text/javascript">
-
+	/*
 	// 주소-좌표 변환 객체를 생성합니다
 	var geocoder = new kakao.maps.services.Geocoder();
 		
@@ -220,7 +221,7 @@
 			
 			geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
 		}
-
+	*/
 	
 	
 	</script>

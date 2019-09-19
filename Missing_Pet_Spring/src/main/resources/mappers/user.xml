@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="user">
+
+	<!-- main페이지에 pet list select -->
+	<select id="pet_list" resultType="PetVO">
+		select missing_no, missing_pic, missing_place, missing_date from missing_info
+		order by missing_no desc
+	</select>
+	
+	<!-- 로그인시 회원조회 -->
+	<select id="select_user" resultType="Integer">
+		select count(*) from
+		user_info
+		where id=#{id} and pass=#{pass}
+	</select>
+</mapper>
