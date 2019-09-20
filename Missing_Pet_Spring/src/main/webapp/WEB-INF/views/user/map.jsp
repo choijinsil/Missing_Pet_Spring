@@ -140,7 +140,7 @@
 		<button id="bt">실종동물</button>
 	</div>
 	<div class="main">
-		<a href="main?action=main">[메인으로]</a>
+		<a href="/main">[메인으로]</a>
 		<c:choose>
 			<c:when test="${loginId == null || loginId == vo.id}">
 				<a href="wit?action=wit&map_id=${vo.id}&missing_no=${vo.missing_no}&missing_place=${vo.missing_place}" style="display: none;">목격신고</a>

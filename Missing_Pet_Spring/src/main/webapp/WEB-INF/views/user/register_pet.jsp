@@ -106,7 +106,7 @@
 
 </head>
 <body>
-	<a class="header" href="main?action=main">[홈페이지로]</a>
+	<a class="header" href="/main">[홈페이지로]</a>
 	<div class="wrap">
 		<div class="map_wrap">
 		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
@@ -124,7 +124,7 @@
 			   <img class="image" id="image3" src="#" alt="your image"/>
 			</div> 
 			
-			<form action="pet?action=register" method="post" enctype="multipart/form-data">
+			<form action="register" method="post" enctype="multipart/form-data">
 				<table>
 					<tbody>
 						<tr>

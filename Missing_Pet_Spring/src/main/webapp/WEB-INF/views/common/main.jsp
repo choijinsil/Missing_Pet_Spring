@@ -92,7 +92,7 @@
 	<script>
 		var no;
 		function move(no){
-			location.replace('pet?action=map&no=' +no);
+			location.replace('pet/map/'+no);
 		}
 	</script>
 </head>
