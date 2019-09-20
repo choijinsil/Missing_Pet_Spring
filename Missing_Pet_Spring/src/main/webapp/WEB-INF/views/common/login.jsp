@@ -126,9 +126,9 @@ body {
 		<br/>
 		<button type="submit">LOGIN</button>
 	<br/><br/>
-    <button type="button" onclick="location.href='main/join'">Create an account</button>	
+    <button type="button" onclick="location.href='join'">Create an account</button>	
     <br/><br/>
-    <button type="button" onclick="location.href='main'">main</button>	
+    <button type="button" onclick="location.href='/main'">main</button>	
     </form>
 
   </div>

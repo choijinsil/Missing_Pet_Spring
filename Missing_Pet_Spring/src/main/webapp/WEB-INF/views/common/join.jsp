@@ -117,7 +117,7 @@ body {
   <div class="form">
 
 	<h3>회원가입 페이지</h3>
-	<form method="post" action="main?action=join">
+	<form method="post" action="join">
 	<table>
 		<tr>
 			<th>아이디</th>
