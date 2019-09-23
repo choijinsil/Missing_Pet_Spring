@@ -57,7 +57,7 @@
 	</tr>
 		<c:forEach items="${list}" var="user">
 			<tr>
-				<td><a href="admin?action=edit&id=${user.id} ">${user.id }</a></td>
+				<td><a href="admin/edit?id=${user.id}">${user.id }</a></td>
 				<td>${user.name }</td>
 				<td>${user.email }</td>
 				<td>${user.tel }</td>
@@ -77,16 +77,16 @@
      </c:if>
      
      <c:if test="${page > 1 }">      
-       <a href="admin?action=admin&page=${page-1 }">이전</a>
+       <a href="admin?page=${page-1 }">이전</a>
      </c:if>
      
       <c:forEach begin="1" end="${totalPage }"  var="i">
-         [<a href="admin?action=admin&page=${i }">${i }</a>]
+         [<a href="admin?page=${i }">${i }</a>]
       </c:forEach>
       
       <c:choose>
         <c:when test="${page < totalPage}">
-           <a href="admin?action=admin&page=${page+1 }">다음</a>
+           <a href="admin?page=${page+1 }">다음</a>
         </c:when>
         <c:otherwise>다음</c:otherwise>
       </c:choose>

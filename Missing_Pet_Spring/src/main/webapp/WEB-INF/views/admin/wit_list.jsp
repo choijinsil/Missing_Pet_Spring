@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<h3>[신고 정보]&nbsp;<a href="admin?action=admin">[관리자 페이지]</a>로 돌아가기</h3>
+<h3>[신고 정보]&nbsp;<a href="admin">[관리자 페이지]</a>로 돌아가기</h3>
 <hr>
 <table border="1">
 	<tr style="background-color: skyblue">
@@ -51,7 +51,7 @@
      </c:if>
      
      <c:if test="${page > 1 }">      
-       <a href="admin?action=pet&page=${page-1 }">이전</a>
+       <a href="admin/pet&page=${page-1 }">이전</a>
      </c:if>
      
       <c:forEach begin="1" end="${totalPage }"  var="i">

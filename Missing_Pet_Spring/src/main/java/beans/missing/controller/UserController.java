@@ -25,10 +25,27 @@ public class UserController {
 
 	String login_id;
 
-	// 메인페이지
+	// 메인페이지, 페이징
 	@GetMapping("")
-	public String main(Model m) {
+	public String main(Model m, HttpServletRequest request) {
 		m.addAttribute("list", service.pet_list());
+		
+//		String pageNo = request.getParameter("page");
+//		int page;
+//
+//		if (pageNo == null) {
+//			page = 1;
+//		} else {
+//			page = Integer.parseInt(pageNo);
+//		}
+//
+//		request.getSession().setAttribute("list", dao.pet_list(page));
+//		request.getSession().setAttribute("page", page);// 현재 페이지 수
+//
+//		// 총 페이지 구하기
+//		int totalPage = dao.total_page();
+//		request.getSession().setAttribute("totalPage", totalPage);// 전체 페이지 수
+
 		return "/common/main";
 	}
 
