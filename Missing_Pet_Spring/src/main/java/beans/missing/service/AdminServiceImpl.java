@@ -28,38 +28,37 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public Integer select_user_total_page() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.select_user_total_page();
 	}
 
 	@Override
 	public Integer select_wit_total_Page() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.select_wit_total_Page();
 	}
 
 	@Override
 	public boolean update_black_info(Map<String, String> map) {
-		// TODO Auto-generated method stub
-		return false;
+		return dao.update_black_info(map);
 	}
 
 	@Override
 	public boolean delete(String id) {
-		// TODO Auto-generated method stub
-		return false;
+		return dao.delete(id);
 	}
 
 	@Override
 	public List<PetVO> select_pet_list(int page) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.select_pet_list(page);
 	}
 
 	@Override
 	public List<PetVO> select_wit_list(int page) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.select_wit_list(page);
+	}
+
+	@Override
+	public List<UserVO> search_user(String id) {
+		return dao.search_user(id);
 	}
 
 }

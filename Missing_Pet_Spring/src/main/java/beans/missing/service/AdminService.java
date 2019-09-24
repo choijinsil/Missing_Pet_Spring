@@ -29,4 +29,6 @@ public interface AdminService {
 	// 신고 강아지 정보 조회
 	public List<PetVO> select_wit_list(int page);
 
+	public List<UserVO> search_user(String id);
+
 }

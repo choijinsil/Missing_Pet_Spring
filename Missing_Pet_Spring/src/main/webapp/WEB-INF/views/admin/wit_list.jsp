@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<h3>[신고 정보]&nbsp;<a href="admin">[관리자 페이지]</a>로 돌아가기</h3>
+<h3>[신고 정보]&nbsp;<a href="/admin">[관리자 페이지]</a>로 돌아가기</h3>
 <hr>
 <table border="1">
 	<tr style="background-color: skyblue">
