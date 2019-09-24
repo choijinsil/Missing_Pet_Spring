@@ -41,7 +41,7 @@
   </script>
 </head>
 <body>
-<h3><a href="/main">[메인페이지]</a>&nbsp;<a href="admin/pet">[실종정보 목록]</a>&nbsp;<a href="admin/wit">[목격정보 목록]</a>&nbsp;<a href="admin">[회원 목록]</a></h3>
+<h3><a href="/main">[메인페이지]</a>&nbsp;<a href="/admin/pet">[실종정보 목록]</a>&nbsp;<a href="/admin/wit">[목격정보 목록]</a>&nbsp;<a href="/admin">[회원 목록]</a></h3>
 <hr>
 <input type="text" placeholder="검색할 아이디나 이름을 입력해주세요" size="50px" id="search_id"> 
 <input type="button" value="검색" onclick="search_user()"> 
