@@ -34,6 +34,7 @@
 <script>
 
 	$(function(){
+	
 	/*
 	$.ajax({
 			url:"wit_info.jsp",
@@ -84,6 +85,7 @@
 			 
 			
 			 document.location.href="/wit?action=witpet&addr="+detailAddr+"&latLng="+latLng+"&missing_no="+'${missing_no}';
+			 document.location.href="/wit/witpet/"+detailAddr+"/"+latLng+"/"+'${missing_no}';
 		}
 	
 		var container = document.getElementById('map');

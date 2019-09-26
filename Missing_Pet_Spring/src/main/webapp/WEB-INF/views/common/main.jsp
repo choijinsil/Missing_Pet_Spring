@@ -182,6 +182,7 @@
 		<div class="left">
 			<div class="title">beans:beans</div>
 			<div class="context">
+			
 				우린 누구인가? <br/><br/>
 				잃어버린 애완동물을 찾아주는 마법사 ~!<br/><br/>
 				<strong><font color="red">후원계좌: 010-8787-5536 기업  </font></strong><br/>
