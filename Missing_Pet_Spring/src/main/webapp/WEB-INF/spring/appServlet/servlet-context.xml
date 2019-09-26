@@ -17,18 +17,22 @@
 	   </message-converters>
 	</annotation-driven>
 
-	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/**" location="/" />
+	
 
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<!-- 파일 업로드 -->
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-    	<beans:property name="maxUploadSize" value="10000000" />
+	<!-- CommonsMultipartResolver는  클래스가 file upload를 처리 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
+		<beans:property name="maxUploadSize" value="10000000" /> 
 	</beans:bean>
 
+
+	
+	
 	<context:component-scan base-package="beans.missing.controller" />
 	
 </beans:beans>

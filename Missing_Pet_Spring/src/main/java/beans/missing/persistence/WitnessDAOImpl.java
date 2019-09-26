@@ -1,7 +1,6 @@
 package beans.missing.persistence;
 
 import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,8 +14,10 @@ public class WitnessDAOImpl implements WitnessDAO {
 	SqlSession sqlSession;
 
 	@Override
-	public String witInfor_insert(WitnessVO vo) {
-		return sqlSession.insert("wit.witInfor_insert", vo) + "";
+	public int witInfor_insert(WitnessVO wVO) {
+
+		return sqlSession.insert("wit.witInfor_insert", wVO);
+
 	}
 
 	@Override

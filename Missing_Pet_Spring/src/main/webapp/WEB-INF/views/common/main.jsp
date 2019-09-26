@@ -10,12 +10,12 @@
 <meta charset="UTF-8">
 <title>mainPage</title>
 	<!-- reset.css.로 초기화 -->
-	<link rel="stylesheet" href="/css/reset.css">
+	<link rel="stylesheet" href="resources/css/reset.css">
 	
 	<!-- auto=가운데정렬, !important=reset.css에 적용된 색상때문에 사용, padding-top=padding값을 위에만 적용, .menu.selected=, wrap이 1000px로 한정되어있기때문에 header와 banner에 따로 padding값을 적용, background-size: cover=이미지가 중복되지않도록 늘림, box-sizing= border를 박스 안에다가 넣어줌, line-height=,-->
 	<style>
 		.footerImg{
-		background-image:url('/images/pet_background1.jpg');
+		background-image:url('resources/images/pet_background1.jpg');
 		background-size:contain;
 		position: absolute;
 		width: 100%;
@@ -98,14 +98,14 @@
 </head>
 <body>
 	<div class="dropmenu">
-		<img src="/images/bottom.png"/>
+		<img src="/resources/images/bottom.png"/>
 		<div class="dropdown">여기를 자유롭게 채워보세요.</div>
 	</div>
 
 	<div class="header">
 		<div class="wrap">
 			<a href="" class="logo">
-				<img src="/images/cat.png"/>
+				<img src="/resources/images/cat.png"/>
 			</a>
 			<c:choose>
 				<c:when test="${loginId eq null }">
@@ -182,6 +182,7 @@
 		<div class="left">
 			<div class="title">beans:beans</div>
 			<div class="context">
+			
 				우린 누구인가? <br/><br/>
 				잃어버린 애완동물을 찾아주는 마법사 ~!<br/><br/>
 				<strong><font color="red">후원계좌: 010-8787-5536 기업  </font></strong><br/>

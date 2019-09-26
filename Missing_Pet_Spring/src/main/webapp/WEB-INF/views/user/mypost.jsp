@@ -86,7 +86,7 @@ function delete_mywit(wit_no){
 
 function  register_upform(missing_no){
 	
-	location.href="/pet/register?missing_no="+missing_no;
+	location.href="/pet/register_upform?missing_no="+missing_no;
 	
 }
 
