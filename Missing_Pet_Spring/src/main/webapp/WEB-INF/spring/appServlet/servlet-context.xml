@@ -17,7 +17,6 @@
 	   </message-converters>
 	</annotation-driven>
 
-	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/**" location="/" />
 	
 
@@ -26,7 +25,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-<<<<<<< HEAD
 	<!-- CommonsMultipartResolver는  클래스가 file upload를 처리 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
 		<beans:property name="maxUploadSize" value="10000000" /> 

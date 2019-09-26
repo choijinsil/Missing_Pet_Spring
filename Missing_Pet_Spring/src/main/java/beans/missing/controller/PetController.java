@@ -37,8 +37,6 @@ public class PetController {
 	//실종동물등록
 	@PostMapping("/register")
 	public String register(HttpServletRequest request) {
-		System.out.println(request.getParameter("type"));
-		return "";
 		
 		String id = (String) request.getSession().getAttribute("loginId");
 		String place = request.getParameter("missing_place");
