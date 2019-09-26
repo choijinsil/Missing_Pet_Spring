@@ -1,6 +1,9 @@
 package beans.missing.controller;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import beans.missing.domain.PetVO;
 import beans.missing.service.PetService;
 
 
@@ -35,6 +39,32 @@ public class PetController {
 	public String register(HttpServletRequest request) {
 		System.out.println(request.getParameter("type"));
 		return "";
+		
+		String id = (String) request.getSession().getAttribute("loginId");
+		String place = request.getParameter("missing_place");
+		String date = request.getParameter("missing_date");
+		String time = request.getParameter("missing_time");
+			SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+			Date to = null;
+			try {
+				to = fm.parse(date +" " +time);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}	
+		
+		String comment = request.getParameter("comment");
+		String tip = request.getParameter("tip");
+		String type = request.getParameter("type");
+		
+		String images = "/images/1.jpg,/images/2.jpg,/images/3.jpg";
+		
+		PetVO vo = new PetVO(0,id,images,null,place,to,type,comment,tip,null,null);
+
+		if (service.register(vo)) {
+			return "redirect:/main";
+		}
+		
+		return "/user/register_pet";
 	}
 
 	@GetMapping("/map/{no}")
