@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import beans.missing.domain.UserVO;
 import beans.missing.service.UserService;
+import beans.missing.service.WitnessService;
 
 @Controller
 @RequestMapping("/main")
@@ -22,6 +23,9 @@ public class UserController {
 
 	@Autowired
 	UserService service;
+	
+	@Autowired
+	WitnessService wit_service;
 
 	String login_id;
 
@@ -29,7 +33,7 @@ public class UserController {
 	@GetMapping("")
 	public String main(Model m, HttpServletRequest request) {
 		m.addAttribute("list", service.pet_list());
-		
+
 //		String pageNo = request.getParameter("page");
 //		int page;
 //
@@ -97,10 +101,55 @@ public class UserController {
 		}
 	}
 
-	@GetMapping("logout")
+	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect: /main";
+	}
+
+	@GetMapping("/user_mypage")
+	public String user_mypage(Model m) {
+		m.addAttribute("userlist", service.select_myinfo(login_id));
+		m.addAttribute("missinglist", service.select_mymissing(login_id));
+
+		return "/user/mypage";
+	}
+
+	@PostMapping("/update_myinfo") // 나의 정보 수정
+	public String update_myinfo(UserVO user, HttpSession session) {
+
+		service.update_myinfo(user);
+		session.setAttribute("userlist", service.select_myinfo(login_id));
+		session.setAttribute("missinglist", service.select_mymissing(login_id));
+
+		return "redirect: /main/user_mypage";
+	}
+
+	@GetMapping("/update_mymissing") // 회원 실종신고 정보 수정
+	public String update_mymissing(int missing_no, HttpSession session) {
+
+		if (service.update_mymissing(missing_no)) {
+			System.out.println("인계정보 수정 완료");
+		} else {
+			System.out.println("인계정보 수정 실패");
+		}
+
+		session.setAttribute("userlist", service.select_myinfo(login_id));
+		session.setAttribute("missinglist", service.select_mymissing(login_id));
+		return "redirect: /main/user_mypage";
+	}
+	
+	@GetMapping("/user_mypost") // 게시글 보기
+	public String user_mypost(Model m) {
+		// 내게시글 목록
+		m.addAttribute("missinglist", service.select_mymissing(login_id));
+
+		// 내 목격 글 목록 조회
+		m.addAttribute("witlist",  wit_service.select_mywit(login_id));
+
+		// FORWARD이동
+		return "/user/mypost";
+
 	}
 
 }
