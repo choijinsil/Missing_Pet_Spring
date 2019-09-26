@@ -92,7 +92,7 @@
 	<script>
 		var no;
 		function move(no){
-			location.replace('pet?action=map&no=' +no);
+			location.replace('pet/map/'+no);
 		}
 	</script>
 </head>
@@ -115,7 +115,7 @@
 				
 				<c:when test="${loginId eq 'admin'}">
 					<a href="admin" class="logo" style="color: black;">관리자페이지로 이동</a>
-					<a href="main/loginOut" class="logo" style="color: black;">로그아웃</a>
+					<a href="main/logout" class="logo" style="color: black;">로그아웃</a>
 				</c:when>
 				
 				<c:otherwise>
@@ -124,7 +124,7 @@
 					</a>
 					<a href="pet/register" class="logo" style="color: black;">동물등록</a>
 					<a href="main/user_mypage" class="logo" style="color: black;">마이페이지</a> 
-					<a href="main/loginOut" class="logo" style="color: black;">로그아웃</a>
+					<a href="main/logout" class="logo" style="color: black;">로그아웃</a>
 				</c:otherwise>
 			</c:choose>
 		</div>

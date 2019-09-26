@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="admin">
+
+	<!-- 회원 목록 전체 조회 -->
+	<select id="select_user_info" resultType="UserVO">
+		SELECT id, name, pass,
+		email, tel, address, black
+		FROM user_info
+		WHERE id != 'admin'
+	</select>
+
+	<!-- 수정할 회원 정보 조회 -->
+	<select id="select_update_info" resultType="UserVO">
+		SELECT id, name, pass, email, tel, address, black
+		FROM
+		user_info
+		WHERE id = #{id}
+	</select>
+
+
+	<!-- pagingBean 조회(user) -->
+	<select id="select_user_total_page" resultType="int">
+		SELECT ceil(count(*)/10) FROM user_info
+	</select>
+
+	<!-- 실종신고 페이지 조회(user) -->
+	<select id="select_wit_total_Page" resultType="int">
+		SELECT ceil(count(*)/10) FROM user_info
+	</select>
+
+	<!-- 회원 정보 수정 -->
+	<update id="update_black_info">
+		UPDATE user_info
+		SET black = #{black}
+		WHERE id = #{id}
+	</update>
+
+	<!-- 회원 삭제 -->
+	<delete id="delete_user_info">
+		DELETE FROM user_info
+		WHERE id = #{id}
+	</delete>
+
+	<!-- 분실 강아지 정보 -->
+	<!-- 분실 동물 정보 -->
+	<select id="select_pet_list" resultType="PetVO">
+		SELECT
+		missing_no,id,missing_pic,write_date,missing_place,missing_date,tip,complete_date
+		FROM missing_info
+	</select>
+
+	<!-- 신고 강아지 정보 -->
+	<!-- 신고 동물 정보 -->
+	<select id="select_wit_list" resultType="WitnessVO">
+		SELECT
+		wit_no,missing_pic,find_date,wit_place,wit_comment
+		FROM wit_info
+	</select>
+	
+	<!-- 회원 아이디, 이름 검색 -->
+	<select id="search_user" resultType="UserVO">
+		select * from user_info 
+		where id like '%'||#{id}||'%'
+		or name like '%'||#{id}||'%'
+	</select>
+</mapper>

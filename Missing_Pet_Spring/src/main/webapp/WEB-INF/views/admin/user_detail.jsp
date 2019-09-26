@@ -17,15 +17,15 @@
   <script type="text/javascript">
   		function deleteInfo(){
   			alert("정말 삭제하시겠습니까?");
-  			location.href = 'main?action=delete&id=${user.id}';
+  			location.href = '/admin/delete?id=${user.id}';
   		}
   </script>
 </head>
 <body>
 <h3>회원 상세정보</h3>
 <hr>
-[<a href="admin?action=admin">회원 목록으로</a>]<br><br>
-<form action="admin?action=update" method="post">
+[<a href="/admin">회원 목록으로</a>]<br><br>
+<form action="/admin/update" method="post">
 <table border="1">
 <tr>
 		<tr>

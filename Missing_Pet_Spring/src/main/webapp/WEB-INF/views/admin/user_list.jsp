@@ -36,16 +36,16 @@
   <script>
   	function search_user(){
   		var search_id = document.getElementById('search_id').value;
-  		location.href = 'admin?action=search_user&search_id='+search_id;
+  		location.href = '/admin/search_user?search_id='+search_id;
   	}
   </script>
 </head>
 <body>
-<h3><a href="main?action=main">[메인페이지]</a>&nbsp;<a href="admin?action=pet">[실종정보 목록]</a>&nbsp;<a href="admin?action=wit">[목격정보 목록]</a></h3>
+<h3><a href="/main">[메인페이지]</a>&nbsp;<a href="/admin/pet">[실종정보 목록]</a>&nbsp;<a href="/admin/wit">[목격정보 목록]</a>&nbsp;<a href="/admin">[회원 목록]</a></h3>
 <hr>
 <input type="text" placeholder="검색할 아이디나 이름을 입력해주세요" size="50px" id="search_id"> 
 <input type="button" value="검색" onclick="search_user()"> 
-<input type="button" value="전체 보기" onclick="location.href='admin?action=admin'" style="margin-bottom: 30px;">
+<input type="button" value="전체 보기" onclick="location.href='/admin'" style="margin-bottom: 30px;">
 <table border="1" class="type11" >
 	<tr >
 		<th>아이디</th>
@@ -57,7 +57,7 @@
 	</tr>
 		<c:forEach items="${list}" var="user">
 			<tr>
-				<td><a href="admin?action=edit&id=${user.id} ">${user.id }</a></td>
+				<td><a href="admin/edit?id=${user.id}">${user.id }</a></td>
 				<td>${user.name }</td>
 				<td>${user.email }</td>
 				<td>${user.tel }</td>
@@ -77,16 +77,16 @@
      </c:if>
      
      <c:if test="${page > 1 }">      
-       <a href="admin?action=admin&page=${page-1 }">이전</a>
+       <a href="admin?page=${page-1 }">이전</a>
      </c:if>
      
       <c:forEach begin="1" end="${totalPage }"  var="i">
-         [<a href="admin?action=admin&page=${i }">${i }</a>]
+         [<a href="admin?page=${i }">${i }</a>]
       </c:forEach>
       
       <c:choose>
         <c:when test="${page < totalPage}">
-           <a href="admin?action=admin&page=${page+1 }">다음</a>
+           <a href="admin?page=${page+1 }">다음</a>
         </c:when>
         <c:otherwise>다음</c:otherwise>
       </c:choose>
