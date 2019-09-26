@@ -57,4 +57,11 @@
 		wit_no,missing_pic,find_date,wit_place,wit_comment
 		FROM wit_info
 	</select>
+	
+	<!-- 회원 아이디, 이름 검색 -->
+	<select id="search_user" resultType="UserVO">
+		select * from user_info 
+		where id like '%'||#{id}||'%'
+		or name like '%'||#{id}||'%'
+	</select>
 </mapper>

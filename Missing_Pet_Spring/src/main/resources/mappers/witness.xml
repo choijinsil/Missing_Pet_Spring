@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="wit">
+  
+  <insert id="witInfor_insert">
+		insert into wit_info(wit_no,missing_pic,find_date,wit_place,wit_comment,id,missing_no) values(wit_seq.nextval,#{missing_pic},#{find_date},#{wit_place},#{wit_comment},#{id},#{missing_no})
+		
+	</insert>
+	
+	<select id="printData" resultType="WitnessVO">
+		select wit_no,missing_pic,find_date,wit_place,wit_comment,id,missing_no
+		from (select wit_no,missing_pic,find_date,wit_place,wit_comment,id,missing_no from wit_info order by wit_no desc)
+		where rownum=1 
+	</select>	
+	
+</mapper>

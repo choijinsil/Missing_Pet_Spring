@@ -1,6 +1,9 @@
 package beans.missing.domain;
 
 import java.util.Date;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class WitnessVO {
 
@@ -12,6 +15,8 @@ public class WitnessVO {
 	private String id;
 	private int missing_no;
 
+	
+	
 	public WitnessVO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -27,6 +32,8 @@ public class WitnessVO {
 		this.missing_no = missing_no;
 	}
 
+	
+	
 	public int getWit_no() {
 		return wit_no;
 	}
@@ -82,6 +89,8 @@ public class WitnessVO {
 	public void setMissing_no(int missing_no) {
 		this.missing_no = missing_no;
 	}
+
+	
 
 	@Override
 	public String toString() {
