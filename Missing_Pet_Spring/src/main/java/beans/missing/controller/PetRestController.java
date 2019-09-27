@@ -17,24 +17,21 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+
 @RestController
-@RequestMapping("/witRest")
-public class WitnessRestController {
+@RequestMapping("/petRest")
+public class PetRestController {
 	
-	// common>witpet.jsp 파일업로드 누를때마다 
 	@ResponseBody
 	@RequestMapping("/fileUp")
 	public Object fileUp(HttpServletRequest request, HttpServletResponse response,
 						MultipartHttpServletRequest mtfRequest ,Model m ) {
+		
 		//1. 지정된 Path에 파일 업로드
-		
-		
 		HashMap fileHashMap;
 		List<HashMap> fileArrayList=new ArrayList<HashMap>();
 		
-		//String relativePath="/images/witimage";
-		String path=request.getServletContext().getRealPath("/images/witimage"); //파일경로
-		//String path=System.getProperty("catalina.home")+relativePath;
+		String path=request.getServletContext().getRealPath("/images/missingImage"); //파일경로
 		
 		File dir=new File(path); //파일 저장 경로확인
 		
@@ -81,7 +78,7 @@ public class WitnessRestController {
 			retVal.put("code", "FAIL");
 		}
 		
-			
 				return retVal;
 	}
+
 }

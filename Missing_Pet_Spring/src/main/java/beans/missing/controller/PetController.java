@@ -3,11 +3,15 @@ package beans.missing.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +20,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import beans.missing.domain.PetVO;
 import beans.missing.service.PetService;
@@ -36,7 +42,8 @@ public class PetController {
 	
 	//실종동물등록
 	@PostMapping("/register")
-	public String register(HttpServletRequest request) {
+	public String register(HttpServletRequest request, HttpServletResponse response,
+			MultipartHttpServletRequest mtfRequest ,Model m ) {
 		
 		String id = (String) request.getSession().getAttribute("loginId");
 		String place = request.getParameter("missing_place");
@@ -54,7 +61,22 @@ public class PetController {
 		String tip = request.getParameter("tip");
 		String type = request.getParameter("type");
 		
-		String images = "/images/1.jpg,/images/2.jpg,/images/3.jpg";
+		Iterator<String> itr=mtfRequest.getFileNames(); //파일들을 iterator에 넣음
+		
+		List list = new ArrayList();
+		while(itr.hasNext()) {//파일을 하나씩 불러온다
+			MultipartFile mpf = mtfRequest.getFile(itr.next());
+				list.add(mpf.getOriginalFilename());
+		}
+		
+		String images = "";
+		for(int i=0; i<list.size();i++) {
+			if(i == list.size()-1) {
+				images += list.get(i);
+			}else {
+				images += list.get(i) +",";
+			}
+		}
 		
 		PetVO vo = new PetVO(0,id,images,null,place,to,type,comment,tip,null,null);
 

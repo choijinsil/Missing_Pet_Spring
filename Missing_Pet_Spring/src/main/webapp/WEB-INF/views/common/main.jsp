@@ -147,7 +147,7 @@
 			<c:set var="pic" value="${pet.missing_pic}"></c:set>
 			<c:set var="array" value="${fn:split(pic,',')}"></c:set>
 			<div class="item">
-				<div class="top" style="background-image:url('${array[0]}');" onclick="move(${pet.missing_no})"></div>
+				<div class="top" style="background-image:url('images/missingImage/${array[0]}');" onclick="move(${pet.missing_no})"></div>
 				<div class="bottom">
 					<div class="title"><fmt:formatDate value="${pet.missing_date}" pattern="yyyy-MM-dd hh:mm"/></div>
 					<div class="context" name="address"></div>
