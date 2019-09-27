@@ -32,4 +32,12 @@ public class PetDAOImpl implements PetDAO{
 		return false;
 	}
 
+	@Override
+	public boolean update_pet_info(PetVO vo) {
+		if(sqlSession.update("pet.update_pet_info", vo) == 1) {
+			return true;
+		}
+		return false;
+	}
+
 }

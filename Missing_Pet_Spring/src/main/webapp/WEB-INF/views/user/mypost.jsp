@@ -137,7 +137,7 @@ function  wit_upform(wit_no){
    <c:set var="pic" value="${missing.missing_pic}"></c:set>
    <c:set var="array" value="${fn:split(pic,',')}"></c:set>
   <tr>
-    <td><img src = "${array[0]}" class='max-small'></td>
+    <td><img src = "/images/missingImage/${array[0]}" class='max-small'></td>
     <td>${missing.missing_no}</td>
     <td><fmt:formatDate value="${missing.write_date}" pattern="yyyy.MM.dd HH:mm:ss" /></td>
     <td><fmt:formatDate value="${missing.missing_date}" pattern="yyyy.MM.dd HH:mm:ss" /></td>
@@ -174,7 +174,7 @@ function  wit_upform(wit_no){
    <c:set var="pic" value="${wit.missing_pic}"></c:set>
    <c:set var="array" value="${fn:split(pic,',')}"></c:set>
   <tr>
-    <td><img src = "${array[0]}" class='max-small'></td>
+    <td><img src = "/images/witImage/${array[0]}" class='max-small'></td>
     <td>${wit.wit_no}</td>
     <td>${wit.missing_no}</td>
     <td><fmt:formatDate value="${wit.find_date}" pattern="yyyy.MM.dd HH:mm:ss" /></td>

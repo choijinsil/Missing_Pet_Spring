@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -45,7 +44,7 @@ public class PetController {
 	// 실종동물등록
 	@PostMapping("/register")
 	public String register(HttpServletRequest request, HttpServletResponse response,
-			MultipartHttpServletRequest mtfRequest ,Model m ) {
+			MultipartHttpServletRequest mtfRequest) {
 		
 		String id = (String) request.getSession().getAttribute("loginId");
 		String place = request.getParameter("missing_place");
@@ -109,15 +108,73 @@ public class PetController {
 
 	@GetMapping("/register_upform")
 	public String register_upform(int missing_no, HttpSession session) {
-		System.out.println("수정버튼 클릭!");
 		session.setAttribute("vo", service.select_pet(missing_no));
 		return "/user/register_upform";
 	}
 
 	@PostMapping("/register_update")
-	public String register_update(int missing_no) {
-		// 실종동물 수정 코드 필요
-		return "redirect: /main/user_mypost";
+	public String register_update(int missing_no, HttpServletRequest request, HttpServletResponse response,
+			MultipartHttpServletRequest mtfRequest) {
+		
+		String place = request.getParameter("missing_place");
+		String date = request.getParameter("missing_date");
+		String time = request.getParameter("missing_time");
+			SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+			Date to = null;
+			try {
+				to = fm.parse(date +" " +time);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}	
+		
+		String comment = request.getParameter("comment");
+		String tip = request.getParameter("tip");
+		String type = request.getParameter("type");
+		
+		Iterator<String> itr=mtfRequest.getFileNames(); //파일들을 iterator에 넣음
+		
+		List list = new ArrayList();
+		while(itr.hasNext()) {//파일을 하나씩 불러온다
+			MultipartFile mpf = mtfRequest.getFile(itr.next());
+				list.add(mpf.getOriginalFilename());
+		}
+		
+		
+		String saveFileName1 = list.get(0).toString();
+		String saveFileName2 = list.get(1).toString();
+		String saveFileName3 = list.get(2).toString();
+
+		String hidden_pic1 = request.getParameter("hidden_pic1");
+		String hidden_pic2 = request.getParameter("hidden_pic2");
+		String hidden_pic3 = request.getParameter("hidden_pic3");
+		
+		if (saveFileName1 == "" && hidden_pic1.length() > 0)
+			saveFileName1 = hidden_pic1; 
+		if (saveFileName2 == "" && hidden_pic2.length() > 0)
+			saveFileName2 = hidden_pic2;
+		if (saveFileName3 == "" && hidden_pic3.length() > 0)
+			saveFileName3 = hidden_pic3;
+
+
+		String nameList = null;
+
+		if (saveFileName2 == null && saveFileName3 == null) {
+			nameList = saveFileName1;
+
+		} else if (saveFileName3 == null) {
+			nameList = saveFileName1 + "," +saveFileName2;
+
+		} else {
+			nameList = saveFileName1 + "," +saveFileName2 + "," +saveFileName3;
+		}		
+
+		
+		PetVO vo = new PetVO(missing_no,null,nameList,null,place,to,type,comment,tip,null,null);
+		
+		if(service.update_pet_info(vo)) {
+			return "redirect: /main/user_mypost";
+		}
+		return "/pet/register_upform";
 	}
 
 }

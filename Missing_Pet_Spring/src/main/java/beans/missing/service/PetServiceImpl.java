@@ -29,4 +29,9 @@ public class PetServiceImpl implements PetService{
 		return dao.register(vo);
 	}
 
+	@Override
+	public boolean update_pet_info(PetVO vo) {
+		return dao.update_pet_info(vo);
+	}
+
 }

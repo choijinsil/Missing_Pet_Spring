@@ -11,4 +11,7 @@ public interface PetDAO {
 	public List<String> wit_markerList(int no);
 	
 	public boolean register(PetVO vo);
+	
+	public boolean update_pet_info(PetVO vo);
+	
 }
