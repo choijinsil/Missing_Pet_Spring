@@ -11,7 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -84,4 +89,51 @@ public class WitnessRestController {
 			
 				return retVal;
 	}
+	
+	
+	
+	
+	// common>witpet.jsp 이미지에 -버튼 누를때마다(선택한파일 삭제)
+		
+		@PostMapping(value="/fileDown")
+		@ResponseBody
+		public  String fileDown(@RequestBody String delName, HttpServletRequest request,
+							Model m ) {
+			
+			String delMessage="";
+			System.out.println("delName>>"+delName);
+			String imgPath=request.getServletContext().getRealPath("/images/witimage")+"\\"+delName;
+			
+			File file=new File(imgPath);
+			
+			if(file.exists()) {
+			
+				if(file.delete()) {
+					delMessage="SUCCESS";
+				}else {
+					delMessage="FAIL";
+				}
+				
+			}else {
+					System.out.println("파일이 존재하지 않습니다.");
+			}
+			
+			return delMessage;
+			
+		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

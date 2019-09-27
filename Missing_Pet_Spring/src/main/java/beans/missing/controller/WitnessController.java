@@ -102,16 +102,9 @@ public class WitnessController {
 	
 	@RequestMapping("/fileUp")
 	public Object fileUp(HttpServletRequest request, HttpServletResponse response,MultipartHttpServletRequest multipartRequest,Model m ) {
-		
-		/*
 		Date date = null;
-		String id="kimjuwon"; // ★저장되어있는 loginId값 가져오기
-		String no = multipartRequest.getParameter("missing_no");
-		
 		String date_s=multipartRequest.getParameter("wit_date")+" "+multipartRequest.getParameter("wit_time");
-		//System.out.println(date_s);
 		SimpleDateFormat dt=new SimpleDateFormat("yyyy-mm-dd hh:mm");//wit_pet.jsp에서 발견날짜,발견시간을 불러와서 포맷을 지정
-	
 		try {
 			date=dt.parse(date_s);
 		 //System.out.println("parse한 포맷>>"+date);
@@ -119,16 +112,23 @@ public class WitnessController {
 				
 				e.printStackTrace();
 			}
-
+		System.out.println("missing_pic>>>"+request.getParameter("missing_pic"));
+		System.out.println("find_date>>>"+date);
+		System.out.println("wit_place>>>"+request.getParameter("latLng"));
+		System.out.println("wit_comment>>>"+multipartRequest.getParameter("comment"));
+		System.out.println("세션에저장된ID>>>>"+request.getSession().getAttribute("loginId"));
+		System.out.println("missing_no>>>"+multipartRequest.getParameter("missing_no"));
+		
+		String no=multipartRequest.getParameter("missing_no");
 		
 			//2.vo ---> DB에 저장  (pathList: insertArticle에 파일업로드경로)
-			WitnessVO wVO=new WitnessVO(pathList,date,request.getParameter("latLng"),multipartRequest.getParameter("comment"),id,Integer.parseInt(no)); 
+			WitnessVO wVO=new WitnessVO(request.getParameter("missing_pic"),date,request.getParameter("latLng"),multipartRequest.getParameter("comment"),(String)request.getSession().getAttribute("loginId"),Integer.parseInt(no)); 
 			//목격자 테이블에 들어갈 정보를담은 vo ===>끝에 파라미터인자 2개는 map.jsp에저장되어있는 실종동물테이블에서 정보를 받아와야함
 			
 			
-			pathList="";
 			System.out.println(wVO.toString());
 				
+			/*
 				try {
 					if(witService.witInfor_insert(wVO)==1)
 						System.out.println("DB입력성공!!!");
