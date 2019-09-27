@@ -11,11 +11,8 @@ import java.util.List;
 
 
 import javax.servlet.http.HttpServletRequest;
-<<<<<<< HEAD
 import javax.servlet.http.HttpServletResponse;
-=======
 import javax.servlet.http.HttpSession;
->>>>>>> 058c4934fa213289841d5b3deb6e131d08680f81
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,26 +36,17 @@ public class PetController {
 	@Autowired
 	PetService service;
 	
-	//실종동물등록폼
-
 	// 실종동물등록폼
 	@GetMapping("/register")
 	public String registerForm() {
 		return "/user/register_pet";
 	}
-	
-	//실종동물등록
 
 	// 실종동물등록
 	@PostMapping("/register")
-<<<<<<< HEAD
 	public String register(HttpServletRequest request, HttpServletResponse response,
 			MultipartHttpServletRequest mtfRequest ,Model m ) {
 		
-=======
-	public String register(HttpServletRequest request) {
-
->>>>>>> 058c4934fa213289841d5b3deb6e131d08680f81
 		String id = (String) request.getSession().getAttribute("loginId");
 		String place = request.getParameter("missing_place");
 		String date = request.getParameter("missing_date");
@@ -71,18 +59,9 @@ public class PetController {
 				e.printStackTrace();
 			}	
 		
-		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-		Date to = null;
-		try {
-			to = fm.parse(date + " " + time);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-
 		String comment = request.getParameter("comment");
 		String tip = request.getParameter("tip");
 		String type = request.getParameter("type");
-<<<<<<< HEAD
 		
 		Iterator<String> itr=mtfRequest.getFileNames(); //파일들을 iterator에 넣음
 		
@@ -102,18 +81,11 @@ public class PetController {
 		}
 		
 		PetVO vo = new PetVO(0,id,images,null,place,to,type,comment,tip,null,null);
-=======
-
-		String images = "/images/1.jpg,/images/2.jpg,/images/3.jpg";
-
-		PetVO vo = new PetVO(0, id, images, null, place, to, type, comment, tip, null, null);
->>>>>>> 058c4934fa213289841d5b3deb6e131d08680f81
 
 		if (service.register(vo)) {
 			return "redirect:/main";
 		}
 		
-
 		return "/user/register_pet";
 	}
 
@@ -122,14 +94,11 @@ public class PetController {
 		
 
 		List<String> latLng = service.wit_markerList(no);
-		System.out.println(latLng);
+
 		for(int i=0;i<latLng.size();i++) { //List에 다음페이지에서 key값 "positions"와 "number"를 이용해서 value값을 찾게끔 저장
 			latLng.set(i, "{\"positions\":new kakao.maps.LatLng("+latLng.get(i)+"),\"number\":"+(i+1)+"}");
-		for (int i = 0; i < latLng.size(); i++) { // List에 다음페이지에서 key값 "positions"와 "number"를 이용해서 value값을 찾게끔 저장
-			latLng.set(i, "{\"positions\":new kakao.maps.LatLng(" + latLng.get(i) + "),\"number\":" + (i + 1) + "}");
 		}
-	
-
+		
 		m.addAttribute("vo", service.select_pet(no));
 		request.getSession().setAttribute("latLng", latLng);
 		
