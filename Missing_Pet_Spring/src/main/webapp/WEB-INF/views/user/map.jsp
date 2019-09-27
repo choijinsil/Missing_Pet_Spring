@@ -159,7 +159,7 @@
 					<div class="img_wrap">
 						<div class="article">
 								<div class="h1">
-									<div class="top" style="background-image:url('${array[0]}');"></div>		
+									<div class="top" style="background-image:url('/images/missingImage/${array[0]}');"></div>		
 								</div>
 						</div>
 					</div>
@@ -168,7 +168,7 @@
 					<div class="img_wrap">
 						<div class="article">
 								<div class="h1">
-									<div class="top" style="background-image:url('${array[1]}');"></div>		
+									<div class="top" style="background-image:url('/images/missingImage/${array[1]}');"></div>		
 								</div>
 						</div>
 					</div>
@@ -177,7 +177,7 @@
 					<div class="img_wrap">
 						<div class="article">
 								<div class="h1">
-									<div class="top" style="background-image:url('${array[2]}');"></div>		
+									<div class="top" style="background-image:url('/images/missingImage/${array[2]}');"></div>		
 								</div>
 						</div>
 					</div>

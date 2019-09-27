@@ -45,4 +45,60 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectOne("user.select_black_user", login_id);
 	}
 
+	@Override
+	public UserVO select_myinfo(String login_id) {
+		return sqlSession.selectOne("user.select_myinfo", login_id);
+	}
+
+	@Override
+	public List<PetVO> select_mymissing(String id) {
+		return sqlSession.selectList("pet.select_mymissing", id);
+	}
+
+	@Override
+	public boolean update_myinfo(UserVO user) {
+		if (sqlSession.update("user.update_myinfo", user) > 0) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean update_mymissing(int missing_no) {
+		if (sqlSession.update("pet.update_mymissing", missing_no) > 0) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public List<PetVO> pet_list(int page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<UserVO> search_user(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PetVO> select_page(Map<String, Integer> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer total_page() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean withdraw_user(String id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

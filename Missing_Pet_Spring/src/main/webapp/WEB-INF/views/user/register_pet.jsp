@@ -24,8 +24,9 @@
     		background:rgba(255,255,255,0.8);z-index:1;padding:5px;margin-top:30px;}
     #centerAddr {display:block;margin-top:2px;font-weight: normal;}
     .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+    
 </style>
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
 	$(function(){
 		
@@ -38,68 +39,150 @@
 	        }
 	    });
  	
+		var saveImageCount=0;
 		
-	function readURL1(input) {
+		if( $('img').attr("src") =='#'){
+			
+			$('img').hide();
+		}
 		
-		 if (input.files && input.files[0]) {
-			  var reader = new FileReader();
-			  
-			  reader.onload = function (e) {
-			   	$('#image1').attr('src', e.target.result);  
-			  }
-			  
-			  reader.readAsDataURL(input.files[0]);
-		 }
-	}
-	
-	function readURL2(input) {
-		
-		 if (input.files && input.files[0]) {
-			  var reader = new FileReader();
-			  
-			  reader.onload = function (e) {
-			   	$('#image2').attr('src', e.target.result);  
-			  }
-			  
-			  reader.readAsDataURL(input.files[0]);
-		 }
-	}
-	
-	function readURL3(input) {
-		
-		 if (input.files && input.files[0]) {
-			  var reader = new FileReader();
-			  
-			  reader.onload = function (e) {
-			   	$('#image3').attr('src', e.target.result);  
-			  }
-			  
-			  reader.readAsDataURL(input.files[0]);
-		 }
-	}
-		  
-		$("#imgInput1").change(function(){
-		   readURL1(this);
-		   $('#file2').show();
-		});
-		
-		$("#imgInput2").change(function(){
-		   readURL2(this);
-		   $('#file3').show();
-		});
-		
-		$("#imgInput3").change(function(){
-		   readURL3(this);
+		$("#uploadFile1").change(function(){
+			   readURL1(this);
+			   $('#file2').show();
 		});
 			
+		$("#uploadFile2").change(function(){
+			  readURL2(this);
+			  $('#file3').show();
+		});
+			
+		$("#uploadFile3").change(function(){
+			  readURL3(this);
+		});		
+		
+		function readURL1(input) {
+			
+			 if (input.files && input.files[0]) {
+				  var reader = new FileReader();
+				  
+				  reader.onload = function (e) {
+				   	$('#image1').attr('src', e.target.result);
+				   	$('#image1').show();
+				  }
+				  
+				  reader.readAsDataURL(input.files[0]);
+			 }
+		}
+		
+		function readURL2(input) {
+			
+			 if (input.files && input.files[0]) {
+				  var reader = new FileReader();
+				  
+				  reader.onload = function (e) {
+				   	$('#image2').attr('src', e.target.result);
+				   	$('#image2').show();
+				  }
+				  
+				  reader.readAsDataURL(input.files[0]);
+			 }
+		}
+		
+		function readURL3(input) {
+			
+			 if (input.files && input.files[0]) {
+				  var reader = new FileReader();
+				  
+				  reader.onload = function (e) {
+				   	$('#image3').attr('src', e.target.result);
+				   	$('#image3').show();
+				  }
+				  
+				  reader.readAsDataURL(input.files[0]);
+			 }
+		}
+		  
+		//지도 정보	
 		$("#searchCenter").on("change", function() {
 			
 			var center=$("#searchCenter").val();
 			 changeCenter(center);
 			
 		});
+
+			
+		//파일업로드 선택할때마다 비동기적으로 controller에 데이터 전달
+		$("input[type=file]").change(function(){
 		
-		
+			
+		 if(saveImageCount>=3){
+			 modalDisplay();
+			 
+			 return;
+			 
+		 }else
+			 
+			var fileListView="";
+			
+			var formData = new FormData(); //ajax로 넘길 data
+			
+			var fileInput1 = document.getElementById("uploadFile1");
+			var fileInput2 = document.getElementById("uploadFile2");
+			var fileInput3 = document.getElementById("uploadFile3");
+			
+			var file1 = fileInput1.files;
+			var file2 = fileInput2.files;
+			var file3 = fileInput3.files;	
+			
+			
+			 formData.append('file-1',file1);
+			 if(file2 != null){
+				formData.append('file-2',file2);
+			 }else if(file3 != null){
+			 	formData.append('file-3',file3);
+			 }
+			
+			$.ajax({
+				url:"/petRest/fileUp",
+				data:formData,
+				dataType:"json",
+				processData:false,
+				contentType:false,
+				type:'POST',
+				
+				success:function(data){
+					if(data.code=="OK"){//응답결과
+						fileInfoList=data.fileInfoList; //응답결과 데이터
+						originalFilename=data.originalFilename;
+						
+						saveImageCount++;
+						
+						$.each(fileInfoList,function(index,fileInfo){
+							
+							console.log("Path:"+fileInfo.fileFullPath);
+							console.log("FileName"+fileInfo.originalFilename);
+							
+							fileListView +="<p>"+fileInfo.originalFilename+"</p>"//뷰에 업로드한 파일 목록 표시용
+							fullPath=fileInfo.fileFullPath;
+							$("#img"+saveImageCount).attr("src","/images/missingImage/"+fileInfo.originalFilename);
+						});
+						
+						
+						$("#file_view_list").append(fileListView);
+					}else{
+						
+						alert("파일 등록에 실패하였습니다!!!!");
+					}
+					
+				},
+				error:function(xhr,textStatus,error){
+					
+					alert("예상치못한 오류가 발생했습니다!!!!");
+				}
+			});//ajax
+		 
+		});
+			
  	});
 	
 </script>
@@ -124,23 +207,23 @@
 			   <img class="image" id="image3" src="#" alt="your image"/>
 			</div> 
 			
-			<form action="register" method="post" enctype="multipart/form-data">
+			<form name="fileForm" id="fileForm" action="register" method="post" enctype="multipart/form-data">
 				<table>
 					<tbody>
 						<tr>
 							<td>*</td>
 							<th>사진</th>
-							<td><input type="file" id="imgInput1" name="missing_pic1"></td>
+							<td><input type="file" id="uploadFile1" name="missing_pic1"></td>
 						</tr>
 						<tr>
 							<td></td>
 							<td></td>
-							<td><span id="file2" style="display: none"><input type='file' id="imgInput2" name="missing_pic2"/></span></td>
+							<td><span id="file2" style="display: none"><input type='file' id="uploadFile2" name="missing_pic2"/></span></td>
 						</tr>
 						<tr>
 							<td></td>
 							<td></td>
-							<td><span id="file3" style="display: none"><input type='file' id="imgInput3" name="missing_pic3"/></span></td>
+							<td><span id="file3" style="display: none"><input type='file' id="uploadFile3" name="missing_pic3"/></span></td>
 						</tr>
 						<tr>
 							<td>*</td>
@@ -182,7 +265,11 @@
 			<div id="clickLatlng"></div>
 			</form>
 		</div>
+	<h3>업로드한 사진명</h3>
+	
+	<div id="file_view_list"></div>
 	</div>
+	
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01fbf10c2ff64d32622233895840cd27&libraries=services"></script>
 	<script>

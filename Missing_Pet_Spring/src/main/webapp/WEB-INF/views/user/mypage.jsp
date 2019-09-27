@@ -72,7 +72,7 @@ function real_check(clicked_name,complete_date){ //(missing_no,null여부)
 	if (confirm("정말 귀가처리 하시겠습니까??") == true){    //확인 
 	 	 
 	 	if(!complete_date){ //compelete_date가 null이라면 
-	 		location.href="main?action=update_mymissing&missing_no="+clicked_name;
+	 		location.href="/main/update_mymissing?missing_no="+clicked_name;
 	 		alert("귀가처리완료 !!");
 	 		return;
 		}else{
@@ -86,7 +86,7 @@ function real_check(clicked_name,complete_date){ //(missing_no,null여부)
 
 function delete_user(){
 	if(confirm("정말 탈퇴하시겠습니까?")){
-		location.href='main?action=withdraw';
+		location.href='/main/withdraw';
 		return;
 	}
 }
@@ -213,8 +213,8 @@ section:after {
 <div class="wrap">
 
 <a class="logo" style="color: black">MYPAGE입니다.</a>
-<a href="main" class="logo" style="color: black;">[메인으로 돌아가기]</a> 
-<a href="main?action=user_mypost"  class="logo" style="color: black;">[게시글 관리하기]</a>
+<a href="/main" class="logo" style="color: black;">[메인으로 돌아가기]</a> 
+<a href="/main/user_mypost"  class="logo" style="color: black;">[게시글 관리하기]</a>
 
 </div>
 </div>
@@ -224,7 +224,7 @@ section:after {
 <br><br><br>
 <div id="floatMenu">
 <h2>MY INFO</h2>
-<form name="user_info" action="/main?action=update_myinfo" method="post">
+<form name="user_info" action="/main/update_myinfo" method="post">
    <table style="width:100%"  class="type11">
       <tr>
        <th>아이디</th>
@@ -292,7 +292,7 @@ section:after {
    <c:set var="pic" value="${missing.missing_pic}"></c:set>
    <c:set var="array" value="${fn:split(pic,',')}"></c:set>
   <tr>
-    <td><img src = "${array[0]}" class='max-small'></td>
+    <td><img src = "/images/missingImage/${array[0]}" class='max-small'></td>
     <td>${missing.missing_no}</td>
     <td><fmt:formatDate value="${missing.write_date}" pattern="yyyy.MM.dd HH:mm:ss" /></td>
     <td><fmt:formatDate value="${missing.missing_date}" pattern="yyyy.MM.dd HH:mm:ss" /></td>

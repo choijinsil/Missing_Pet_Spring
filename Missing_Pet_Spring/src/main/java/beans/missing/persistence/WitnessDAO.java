@@ -1,11 +1,16 @@
 package beans.missing.persistence;
 
-import java.sql.SQLException;
+import java.util.List;
 
 import beans.missing.domain.WitnessVO;
 
 public interface WitnessDAO {
 
-	public int witInfor_insert(WitnessVO wVO); 
-	public WitnessVO printData(); 
+	public List<WitnessVO> select_mywit(String id);
+
+	public int delete_mywit(int no);
+
+	public int witInfor_insert(WitnessVO wVO);
+
+	public WitnessVO printData();
 }

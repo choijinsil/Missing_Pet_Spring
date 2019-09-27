@@ -332,17 +332,25 @@
 	</thead>
 	<tbody>
 	   
+<<<<<<< HEAD
 	  	
 	  	<form name="fileForm" id="fileForm" method="post" action="/wit/fileUp" enctype="multipart/form-data" >
 	  
 		  
+=======
+	  	<form name="fileForm" id="fileForm" method="post" action="/wit/fileUp" enctype="multipart/form-data" >
+	  
+>>>>>>> fa91041ee8b592222b0810ce8b84ba1d2c376937
 		  <tr><td>사진:</td><td><input multiple="multiple" type="file" name="uploadFile" id="uploadFile"> </td></tr>  
 		  <tr><td>발견날짜:</td><td><input type="date" name="wit_date" id="wit_date" ></td> </tr>
 		  <tr><td>발견시간:</td><td><input type="time" name="wit_time" id="wit_time" ></td> </tr>
 		  <tr ><td>위치정보:</td><td colspan="1"><input type="text" name="wit_place" value="${addr }" size="50" readonly></td> </tr>
 		  <tr><td>코멘트:</td><td><textarea rows="5" cols="20" name="comment"></textarea></td> </tr>
 	      <tr><td style="border:none"><button  name="input" type="submit"  >등록하기</button>   </td></tr>
+<<<<<<< HEAD
 	  		
+=======
+>>>>>>> fa91041ee8b592222b0810ce8b84ba1d2c376937
 	  	<input type="hidden" name="missing_no" value="${missing_no}">	
 	  	<input type="hidden" name="latLng" value="${latLng}">	
 	  	<input type="hidden" name="missing_pic" value="">	

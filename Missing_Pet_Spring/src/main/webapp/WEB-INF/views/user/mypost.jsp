@@ -63,7 +63,7 @@ table.type11 td {
 function delete_mymissing(missing_no){ 
 	
 	if (confirm("정말 삭제 하시겠습니까??") == true){    //확인 
-	 		location.href="pet?action=delete_mymissing&missing_no="+missing_no;
+	 		location.href="/pet/delete_mymissing?missing_no="+missing_no;
 	 		return;
 		
 	}else{   //취소
@@ -74,7 +74,7 @@ function delete_mymissing(missing_no){
 function delete_mywit(wit_no){ 
 	
 	if (confirm("정말 삭제 하시겠습니까??") == true){    //확인 
-	 		location.href="wit?action=delete_mywit&wit_no="+wit_no;
+	 		location.href="/wit/delete_mywit?wit_no="+wit_no;
 	 		return;
 		
 	}else{   //취소
@@ -86,13 +86,13 @@ function delete_mywit(wit_no){
 
 function  register_upform(missing_no){
 	
-	location.href="pet?action=register_upform&missing_no="+missing_no;
+	location.href="/pet/register_upform?missing_no="+missing_no;
 	
 }
 
 function  wit_upform(wit_no){
 	
-	location.href="wit?action=wit_upform&wit_no="+wit_no;
+	location.href="/wit/wit_upform?wit_no="+wit_no;
 	
 }
 
@@ -109,8 +109,8 @@ function  wit_upform(wit_no){
 <div class="wrap">
 
 <a class="logo" style="color: black">게시글관리 입니다.</a>
-<a href="main?action=main" class="logo" style="color: black;">[메인으로]</a> 
-<a href="main?action=user_mypage"  class="logo" style="color: black;">[마이페이지]</a>
+<a href="/main" class="logo" style="color: black;">[메인으로]</a> 
+<a href="/main/user_mypage"  class="logo" style="color: black;">[마이페이지]</a>
 
 </div>
 </div>
@@ -137,7 +137,7 @@ function  wit_upform(wit_no){
    <c:set var="pic" value="${missing.missing_pic}"></c:set>
    <c:set var="array" value="${fn:split(pic,',')}"></c:set>
   <tr>
-    <td><img src = "${array[0]}" class='max-small'></td>
+    <td><img src = "/images/missingImage/${array[0]}" class='max-small'></td>
     <td>${missing.missing_no}</td>
     <td><fmt:formatDate value="${missing.write_date}" pattern="yyyy.MM.dd HH:mm:ss" /></td>
     <td><fmt:formatDate value="${missing.missing_date}" pattern="yyyy.MM.dd HH:mm:ss" /></td>
@@ -174,7 +174,7 @@ function  wit_upform(wit_no){
    <c:set var="pic" value="${wit.missing_pic}"></c:set>
    <c:set var="array" value="${fn:split(pic,',')}"></c:set>
   <tr>
-    <td><img src = "${array[0]}" class='max-small'></td>
+    <td><img src = "/images/witImage/${array[0]}" class='max-small'></td>
     <td>${wit.wit_no}</td>
     <td>${wit.missing_no}</td>
     <td><fmt:formatDate value="${wit.find_date}" pattern="yyyy.MM.dd HH:mm:ss" /></td>

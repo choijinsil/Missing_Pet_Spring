@@ -13,15 +13,13 @@
 <style>
 	h3{text-align: center;}
 	hr{width: 380px;}
-	table{margin: auto; border: 1px solid #BDBDBD; border-radius: 5px; margin-top: 40px;}
 	table{margin: auto; border: 1px solid #BDBDBD; border-radius: 5px; margin-top: 10px;}
 	th{text-align: left;}
 	td{padding: 20px;}
-	td{padding: 10px;}
 	div{text-align: center;}
 	
-	.header{float: left; position: absolute;}
-	.wrap{ display:inline; width: 100%; height: 500px; border-radius: 5px;}
+	.header{position: absolute; float: left;}
+	.wrap{ display:inline; width: 100%; height: 500px; border-radius: 5px; position: absolute; margin-top: 20px;}
 	.list{ display:inline; float:left; width:40%; margin-top: 30px;}
 	.image{width: 100px; height: 100px;}
 	
@@ -127,6 +125,78 @@
 			$('#image3').attr('src','');
 		});
 		
+		
+		//파일업로드 선택할때마다 비동기적으로 controller에 데이터 전달
+		$("input[type=file]").change(function(){
+		
+			
+		 if(saveImageCount>=3){
+			 modalDisplay();
+			 
+			 return;
+			 
+		 }else
+			 
+			var fileListView="";
+			
+			var formData = new FormData(); //ajax로 넘길 data
+			
+			var fileInput1 = document.getElementById("imgInput1");
+			var fileInput2 = document.getElementById("imgInput2");
+			var fileInput3 = document.getElementById("imgInput3");
+			
+			var file1 = fileInput1.files;
+			var file2 = fileInput2.files;
+			var file3 = fileInput3.files;	
+			
+			
+			 formData.append('file-1',file1);
+			 if(file2 != null){
+				formData.append('file-2',file2);
+			 }else if(file3 != null){
+			 	formData.append('file-3',file3);
+			 }
+			
+			$.ajax({
+				url:"/petRest/fileUp",
+				data:formData,
+				dataType:"json",
+				processData:false,
+				contentType:false,
+				type:'POST',
+				
+				success:function(data){
+					if(data.code=="OK"){//응답결과
+						fileInfoList=data.fileInfoList; //응답결과 데이터
+						originalFilename=data.originalFilename;
+						
+						saveImageCount++;
+						
+						$.each(fileInfoList,function(index,fileInfo){
+							
+							console.log("Path:"+fileInfo.fileFullPath);
+							console.log("FileName"+fileInfo.originalFilename);
+							
+							fileListView +="<p>"+fileInfo.originalFilename+"</p>"//뷰에 업로드한 파일 목록 표시용
+							fullPath=fileInfo.fileFullPath;
+							$("#img"+saveImageCount).attr("src","/images/missingImage/"+fileInfo.originalFilename);
+						});
+						
+						
+						$("#file_view_list").append(fileListView);
+					}else{
+						
+						alert("파일 등록에 실패하였습니다!!!!");
+					}
+					
+				},
+				error:function(xhr,textStatus,error){
+					
+					alert("예상치못한 오류가 발생했습니다!!!!");
+				}
+			});//ajax
+		 
+		});		
 	});
 	
 	
@@ -135,7 +205,7 @@
 
 </head>
 <body>
-	<a class="header" href="main?action=user_mypost">[내게시글목록으로]</a>
+	<a class="header" href="/main/user_mypost">[내게시글목록으로]</a>
 	<div class="wrap">
 	<div class="map_wrap">
 		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
@@ -151,12 +221,11 @@
    <c:set var="array" value="${fn:split(pic,',')}"></c:set>
    
 		<div class="images">
-
-		   <img class="image" id="image1" src="${array[0]}" alt="your image" />
-		   <img class="image" id="image2" src="${array[1]}" alt="your image"/>
-		   <img class="image" id="image3" src="${array[2]}" alt="your image"/>
+		   <img class="image" id="image1" src="/images/missingImage/${array[0]}" alt="your image" />
+		   <img class="image" id="image2" src="/images/missingImage/${array[1]}" alt="your image"/>
+		   <img class="image" id="image3" src="/images/missingImage/${array[2]}" alt="your image"/>
 		</div> 
-	<form action="pet?action=register_update" method="post" enctype="multipart/form-data">
+	<form action="/pet/register_update" method="post" enctype="multipart/form-data">
 	    <input type="hidden" name="hidden_pic1" value="${array[0]}">
 	    <input type="hidden" name="hidden_pic2" value="${array[1]}">
 	    <input type="hidden" name="hidden_pic3" value="${array[2]}">
