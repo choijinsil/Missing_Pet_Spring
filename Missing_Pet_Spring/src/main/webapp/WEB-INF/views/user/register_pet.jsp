@@ -114,14 +114,6 @@
 		//파일업로드 선택할때마다 비동기적으로 controller에 데이터 전달
 		$("input[type=file]").change(function(){
 		
-			
-		 if(saveImageCount>=3){
-			 modalDisplay();
-			 
-			 return;
-			 
-		 }else
-			 
 			var fileListView="";
 			
 			var formData = new FormData(); //ajax로 넘길 data
@@ -141,6 +133,7 @@
 			 }else if(file3 != null){
 			 	formData.append('file-3',file3);
 			 }
+			 
 			
 			$.ajax({
 				url:"/petRest/fileUp",
@@ -158,17 +151,11 @@
 						saveImageCount++;
 						
 						$.each(fileInfoList,function(index,fileInfo){
-							
-							console.log("Path:"+fileInfo.fileFullPath);
-							console.log("FileName"+fileInfo.originalFilename);
-							
 							fileListView +="<p>"+fileInfo.originalFilename+"</p>"//뷰에 업로드한 파일 목록 표시용
 							fullPath=fileInfo.fileFullPath;
-							$("#img"+saveImageCount).attr("src","/images/missingImage/"+fileInfo.originalFilename);
-						});
-						
-						
+							$("#image"+saveImageCount).attr("src","/images/missingImage/"+fileInfo.originalFilename);
 						$("#file_view_list").append(fileListView);
+						});
 					}else{
 						
 						alert("파일 등록에 실패하였습니다!!!!");
@@ -262,12 +249,10 @@
 				<button type="submit" id="bt1">등록</button>
 				<button type="reset">reset</button>
 			</div>
+			<div id="file_view_list"></div>
 			<div id="clickLatlng"></div>
 			</form>
 		</div>
-	<h3>업로드한 사진명</h3>
-	
-	<div id="file_view_list"></div>
 	</div>
 	
 	
