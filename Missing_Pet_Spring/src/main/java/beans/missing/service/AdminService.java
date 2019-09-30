@@ -13,7 +13,9 @@ public interface AdminService {
 
 	public Integer select_user_total_page(Criteria cri);// 실종동물 토탈페이지
 
-	public Integer select_wit_total_Page();
+	public Integer select_wit_total_Page(Criteria cri);
+
+	public Integer select_pet_total_Page(Criteria cri);
 
 	// 업데이트 회원 정보 조회
 	public UserVO select_update_info(String id);
@@ -25,10 +27,10 @@ public interface AdminService {
 	public boolean delete(String id);
 
 	// 분실 강아지 정보 조회
-	public List<PetVO> select_pet_list(int page);
+	public List<PetVO> select_pet_list(Criteria cri);
 
 	// 신고 강아지 정보 조회
-	public List<PetVO> select_wit_list(int page);
+	public List<PetVO> select_wit_list(Criteria cri);
 
 	public List<UserVO> search_user(String id);
 

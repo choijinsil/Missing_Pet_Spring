@@ -65,9 +65,11 @@
 	<select id="select_wit_total_Page" resultType="int">
 		SELECT COUNT(*) FROM wit_info
 	</select>
-
-
-
+	
+	<!-- 실종신고 페이지 조회(user) -->
+	<select id="select_pet_total_Page" resultType="int">
+		SELECT COUNT(*) FROM missing_info
+	</select>
 
 
 
