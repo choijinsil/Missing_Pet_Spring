@@ -3,10 +3,12 @@ package beans.missing.persistence;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import beans.missing.domain.Criteria;
 import beans.missing.domain.PetVO;
 import beans.missing.domain.UserVO;
 
@@ -22,9 +24,9 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public List<UserVO> select_user_info(int page) {
-		// sqlSession.selectList("admin.select_user_info", 10 * (page - 1), 10)
-		return sqlSession.selectList("admin.select_user_info", page);
+	public List<UserVO> select_user_info(Criteria cri) {
+		RowBounds bounds = new RowBounds((cri.getPageNum() - 1) * 10, 10);
+		return sqlSession.selectList("admin.select_user_info", cri, bounds);
 	}
 
 	@Override
@@ -33,7 +35,7 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public Integer select_user_total_page() {
+	public Integer select_user_total_page(Criteria cri) {
 		return sqlSession.selectOne("admin.select_user_total_page");
 	}
 
