@@ -86,7 +86,12 @@ values ('admin', '관리자', '1234', '.', '.', '.', 'N');
 -- user_info
 insert into user_info (id, name, pass, email, tel, address, black) 
 values ('orange', '오렌지', '1234', 'orange@gmail.com', '010-1234-4567', '서울시 마포구 공덕동 롯데캐슬프레지던트', 'N');
+insert into user_info (id, name, pass, email, tel, address, black) 
 values ('apple20', 'app12', '1234', 'apple20@gmail.com', '010-1234-4567', '서울시 노원구 하계동 롯데우성아파트', 'N');
+insert into user_info (id, name, pass, email, tel, address, black) 
+values ('juwon', '김주원', '1234', 'juwon@gmail.com', '010-5555-1244', '서울시 광진구 군자동 레미안', 'N');
+insert into user_info (id, name, pass, email, tel, address, black) 
+values ('lime', '길라임', '1234', 'lime@gmail.com', '010-5577-1244', '서울시 마포구 상암동 브라운스톤', 'N');
 
 
 

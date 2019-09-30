@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import beans.missing.service.WitService;
 
 import beans.missing.domain.WitnessVO;
@@ -24,11 +25,16 @@ import beans.missing.domain.WitnessVO;
 public class WitnessController {
 
 	ArrayList<String> nameList;
+	
+	
+	
 	int count = 0;
 	String pathList = "";
 
 	@Autowired
 	WitService witService;
+	
+	
 
 	@RequestMapping("/wit/{id}/{missing_no}/{missing_place}") // common>map.jsp 에서 목격동물등록버튼 누를때 실행되는 메소드
 	public String wit(@PathVariable String id, @PathVariable String missing_no, @PathVariable String missing_place,
@@ -46,6 +52,7 @@ public class WitnessController {
 		m.addAttribute("longitude", longitude);
 		m.addAttribute("missing_no", missing_no);
 
+	//common>map.jsp 에서 마커를찍으면 생기는
 		return "/common/map";
 	}
 
@@ -66,10 +73,12 @@ public class WitnessController {
 
 		m.addAttribute("missing_no", missing_no);
 		m.addAttribute("addr", detailAddr);
-		m.addAttribute("latLng", la + lt);
+		m.addAttribute("latLng",la+lt);
+		
+		
+		return "/common/wit_pet" ;
+	}//common>wit_pet.jsp에서 목격동물 등록버튼 누를시
 
-		return "/common/wit_pet";
-	}// common>wit_pet.jsp에서 목격동물 등록버튼 누를시
 
 	@RequestMapping("/fileUp")
 	public Object fileUp(HttpServletRequest request, HttpServletResponse response,
@@ -78,12 +87,13 @@ public class WitnessController {
 		String date_s = multipartRequest.getParameter("wit_date") + " " + multipartRequest.getParameter("wit_time");
 		SimpleDateFormat dt = new SimpleDateFormat("yyyy-mm-dd hh:mm");// wit_pet.jsp에서 발견날짜,발견시간을 불러와서 포맷을 지정
 		try {
-			date = dt.parse(date_s);
-			// System.out.println("parse한 포맷>>"+date);
-		} catch (ParseException e) {
+			date=dt.parse(date_s);
+		 //System.out.println("parse한 포맷>>"+date);
+			} catch (ParseException e) {
+				
+				e.printStackTrace();
+			}
 
-			e.printStackTrace();
-		}
 		System.out.println("missing_pic>>>" + request.getParameter("missing_pic"));
 		System.out.println("find_date>>>" + date);
 		System.out.println("wit_place>>>" + request.getParameter("latLng"));
