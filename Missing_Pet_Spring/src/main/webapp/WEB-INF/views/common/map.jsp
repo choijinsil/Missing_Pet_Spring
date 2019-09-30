@@ -33,8 +33,6 @@
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
 
-	$(function(){
-	
 	/*
 	$.ajax({
 			url:"wit_info.jsp",
@@ -64,8 +62,9 @@
 
 </head>
 <body>
-	<a class="header" href="main?action=main">[홈페이지로]</a>
+	<div><a class="header" href="/main">[홈페이지로]</a></div>
 	<div class="wrap">
+	
 	<div class="map_wrap">
 		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 		    <div class="hAddr">
