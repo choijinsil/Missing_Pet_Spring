@@ -60,24 +60,8 @@ public class PetController {
 		
 		String comment = request.getParameter("comment");
 		String tip = request.getParameter("tip");
-		String type = request.getParameter("type");
-		
-		Iterator<String> itr=mtfRequest.getFileNames(); //파일들을 iterator에 넣음
-		
-		List list = new ArrayList();
-		while(itr.hasNext()) {//파일을 하나씩 불러온다
-			MultipartFile mpf = mtfRequest.getFile(itr.next());
-				list.add(mpf.getOriginalFilename());
-		}
-		
-		String images = "";
-		for(int i=0; i<list.size();i++) {
-			if((i == list.size()-1) || (list.get(i+1).equals(""))) {
-				images += list.get(i);
-			}else {
-				images += list.get(i) +",";
-			}
-		}
+		String type = request.getParameter("type");	
+		String images = request.getParameter("missing_pic");
 
 		PetVO vo = new PetVO(0,id,images,null,place,to,type,comment,tip,null,null);
 
