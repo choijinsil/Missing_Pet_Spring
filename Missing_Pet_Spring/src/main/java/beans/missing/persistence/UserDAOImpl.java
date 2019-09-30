@@ -73,31 +73,27 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public List<PetVO> pet_list(int page) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<UserVO> search_user(String id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<PetVO> select_page(Map<String, Integer> map) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Integer total_page() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public boolean withdraw_user(String id) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

@@ -64,4 +64,7 @@
 	<delete id="withdraw_user">
 		delete from user_info where id=#{id}
 	</delete>
+
+	
+	
 </mapper>

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import beans.missing.domain.Criteria;
 import beans.missing.domain.PetVO;
 import beans.missing.domain.UserVO;
 import beans.missing.persistence.AdminDAO;
@@ -22,13 +23,13 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<UserVO> select_user_info(int page) {
-		return dao.select_user_info(page);
+	public List<UserVO> select_user_info(Criteria cri) {
+		return dao.select_user_info(cri);
 	}
 
 	@Override
-	public Integer select_user_total_page() {
-		return dao.select_user_total_page();
+	public Integer select_user_total_page(Criteria cri) {
+		return dao.select_user_total_page(cri);
 	}
 
 	@Override

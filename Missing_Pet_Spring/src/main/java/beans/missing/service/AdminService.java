@@ -3,14 +3,15 @@ package beans.missing.service;
 import java.util.List;
 import java.util.Map;
 
+import beans.missing.domain.Criteria;
 import beans.missing.domain.PetVO;
 import beans.missing.domain.UserVO;
 
 public interface AdminService {
 
-	public List<UserVO> select_user_info(int page);
+	public List<UserVO> select_user_info(Criteria cri);
 
-	public Integer select_user_total_page();// 실종동물 토탈페이지
+	public Integer select_user_total_page(Criteria cri);// 실종동물 토탈페이지
 
 	public Integer select_wit_total_Page();
 
