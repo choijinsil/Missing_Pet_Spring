@@ -136,6 +136,10 @@
 		background-color: #ff6375;
 		color: #FFFFFF;
 	}
+	
+	.desc{
+		background:white;
+	}
 	</style>
 	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	

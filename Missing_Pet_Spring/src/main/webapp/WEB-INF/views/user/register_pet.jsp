@@ -402,7 +402,7 @@
 		    <div class="hAddr">
 		        <span class="title">지도중심기준 행정동 주소정보</span>
 		        <span id="centerAddr"></span>
-		        <span><input type="text" id="searchCenter" style="width:219px; text-align: center" placeholder="지도중심좌표 이동" ></span>
+		        <span><input type="text" name="searchCenter" id="searchCenter" style="width:219px; text-align: center" placeholder="지도중심좌표 이동" onchange="changeCenter()"></span>
 		    </div>
 		</div>
 		<div class="list">
@@ -467,10 +467,11 @@
 
 		var map = new kakao.maps.Map(container, options);
 		
+	
 		// input창에 client가 주소를 입력시 change이벤트가 발생해서 text박스에 있는 주소값으로 지도중심으로 바꾸기
-		function changeCenter(center){
+		function changeCenter(){
 			
-			var center=center;
+			var center=$("input[name=searchCenter]").val();//center;
 			var geocoder=new kakao.maps.services.Geocoder();
 			
 			//주소로 좌표를 검색
