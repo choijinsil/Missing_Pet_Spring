@@ -30,5 +30,12 @@
 		delete from wit_info
 		where wit_no=#{wit_no}
 	</delete>
+	
+	<!-- 실종동물 DB에서 위경도값조회 -->
+	<select id="latLng" resultType="String">
+	select missing_place from missing_info 
+	where missing_no=#{missing_no}
+	
+	</select>
 
 </mapper>

@@ -40,7 +40,7 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public Integer select_wit_total_Page() {
+	public Integer select_wit_total_Page(Criteria cri) {
 		return sqlSession.selectOne("admin.select_wit_total_Page");
 	}
 
@@ -61,13 +61,20 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public List<PetVO> select_pet_list(int page) {
-		return sqlSession.selectList("admin.select_pet_list", page);
+	public List<PetVO> select_pet_list(Criteria cri) {
+		RowBounds bounds = new RowBounds((cri.getPageNum() - 1) * 10, 10);
+		return sqlSession.selectList("admin.select_pet_list",  cri, bounds);
 	}
 
 	@Override
-	public List<PetVO> select_wit_list(int page) {
-		return sqlSession.selectList("admin.select_wit_list", page);
+	public List<PetVO> select_wit_list(Criteria cri) {
+		RowBounds bounds = new RowBounds((cri.getPageNum() - 1) * 10, 10);
+		return sqlSession.selectList("admin.select_wit_list",  cri, bounds);
+	}
+
+	@Override
+	public Integer select_pet_total_Page(Criteria cri) {
+		return sqlSession.selectOne("admin.select_pet_total_Page");
 	}
 
 }

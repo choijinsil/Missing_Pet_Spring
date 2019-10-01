@@ -3,6 +3,7 @@ package beans.missing.persistence;
 import java.util.List;
 
 import beans.missing.domain.PetVO;
+import beans.missing.domain.WitnessVO;
 
 public interface PetDAO {
 	
@@ -13,5 +14,8 @@ public interface PetDAO {
 	public boolean register(PetVO vo);
 	
 	public boolean update_pet_info(PetVO vo);
+
+	public List<WitnessVO> wit_InforList(int no);
+	public boolean delete_mymissing(int missing_no);
 	
 }

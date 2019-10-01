@@ -160,6 +160,9 @@
 </head>
 	<%
 		List<String> latLng=(List<String>)request.getSession().getAttribute("latLng");
+		List<String> AllContent=(List<String>)request.getSession().getAttribute("AllContet");
+		
+		System.out.println("AllContent>>>>"+AllContent);
 	%>
 <body>
 	<c:set var="pic" value="${vo.missing_pic}"></c:set>
@@ -553,6 +556,9 @@
 		
    //목격동물 마커 표시 ------------------------------------------------------------------------------------------------------
 	  var list= eval('<%=latLng%>');
+	  var contents= eval('<%=AllContent%>');
+	  	
+	  	
 	  
 	  var imageSrc = "https://image.flaticon.com/icons/svg/62/62460.svg";
 	  
@@ -572,6 +578,22 @@
 		        image : markerImage // 마커 이미지 
 		    });
 		    
+		    //마커에 표시할 커스텀 오버레이를 생성
+		    var overlay=new kakao.maps.CustomOverlay({
+		    	
+		    	content:contents[i].content,
+		    	//map:map,
+		    	position:marker.getPosition(),
+		    	xAnchor:0.3,
+		    	yAnchor:0
+		    	
+		    });
+		    
+		    //목격동물 마커에 mouseover이벤트와 mouseout이벤트를 등록
+		    
+		    kakao.maps.event.addListener(marker,'mouseover',makeOverListener(map,overlay));
+		    kakao.maps.event.addListener(marker,'mouseout',makeOutListener(overlay));
+		    
 		    var markerTracker = new MarkerTracker(map, marker);
 		    markerTracker.run();
 		}
@@ -587,6 +609,21 @@
 	       image:markerImage2
 	   });
 
+	   //커스텀오버레이를 표시하는 클로저 함수
+	   function makeOverListener(map,overlay){
+		   return function(){
+			 overlay.setMap(map);  
+		   };
+	   }
+	   
+	   
+	   //커스텀오버레이를 닫는 클로저 함수
+	   function makeOutListener(overlay){
+		   return function(){
+			 overlay.setMap(null)  
+		   };
+		   
+	   }
 
 	  // 마커가 지도 위에 표시되도록 설정합니다
 	  marker.setMap(map);

@@ -3,6 +3,7 @@ package beans.missing.persistence;
 import java.util.List;
 import java.util.Map;
 
+import beans.missing.domain.Criteria;
 import beans.missing.domain.PetVO;
 import beans.missing.domain.UserVO;
 
@@ -28,7 +29,7 @@ public interface UserDAO {
 	public boolean update_mymissing(int missing_no);
 
 	// main.jsp에 실종 동물 리스트 select
-	public List<PetVO> pet_list(int page);
+	public List<PetVO> pet_list(Criteria cri);
 
 	public List<UserVO> search_user(String id);
 
@@ -36,7 +37,7 @@ public interface UserDAO {
 	public List<PetVO> select_page(Map<String, Integer> map);
 
 	// main페이지 페이징
-	public Integer total_page();
+	public Integer total_page(Criteria cri);
 
 	public boolean withdraw_user(String id);
 }

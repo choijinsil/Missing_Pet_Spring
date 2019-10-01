@@ -33,8 +33,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public Integer select_wit_total_Page() {
-		return dao.select_wit_total_Page();
+	public Integer select_wit_total_Page(Criteria cri) {
+		return dao.select_wit_total_Page(cri);
 	}
 
 	@Override
@@ -48,18 +48,23 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<PetVO> select_pet_list(int page) {
-		return dao.select_pet_list(page);
+	public List<PetVO> select_pet_list(Criteria cri) {
+		return dao.select_pet_list(cri);
 	}
 
 	@Override
-	public List<PetVO> select_wit_list(int page) {
-		return dao.select_wit_list(page);
+	public List<PetVO> select_wit_list(Criteria cri) {
+		return dao.select_wit_list(cri);
 	}
 
 	@Override
 	public List<UserVO> search_user(String id) {
 		return dao.search_user(id);
+	}
+
+	@Override
+	public Integer select_pet_total_Page(Criteria cri) {
+		return dao.select_pet_total_Page(cri);
 	}
 
 }

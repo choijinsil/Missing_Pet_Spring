@@ -6,5 +6,6 @@ public interface WitService {
 	
 	public int witInfor_insert(WitnessVO wVO);
 	public WitnessVO printData();
+	public String latLng(String missing_no);
 	
 }

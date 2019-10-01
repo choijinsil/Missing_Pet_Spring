@@ -35,4 +35,10 @@ public class WitnessDAOImpl implements WitnessDAO {
 		return sqlSession.delete("wit.delete_mywit", no);
 	}
 
+	@Override
+	public String latLng(String missing_no) {
+		
+		return sqlSession.selectOne("wit.latLng",Integer.parseInt(missing_no) );
+	}
+
 }

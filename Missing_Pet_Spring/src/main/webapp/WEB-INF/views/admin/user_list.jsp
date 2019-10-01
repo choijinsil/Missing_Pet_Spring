@@ -4,6 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+    <!-- Bootstrap Core CSS -->
+<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
 <style type="text/css">
 	
 	table{
@@ -28,11 +33,18 @@
     background: #eee;
 	}
 	
+	.paginate_button{
+		align:center;
+	}
 	body{text-align: center}
     td,th{padding: 5px}
+    
 </style>
+
+
 <meta charset="UTF-8">
 <title>회원리스트</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script>
   	function search_user(){
   		var search_id = document.getElementById('search_id').value;
@@ -74,7 +86,7 @@
 
 <br>
 	<div class='row'>
-	<div class='pull-right'>
+	
 	<ul class="pagination">
 	<c:if test="${pageMaker.prev}">
 		<li class="paginate_button previous">
@@ -84,7 +96,7 @@
 
 	<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
 		<li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""} ">
-			<a href="/admin/${num}">${num}</a>
+			<a href="${num}">${num}</a>
 		</li>
 	</c:forEach>
 
@@ -94,7 +106,7 @@
 		</c:if>
 
 	</ul>
-	</div>
+	
 	</div>
 	
 	<form id='actionForm' action="/admin" method='get'>
