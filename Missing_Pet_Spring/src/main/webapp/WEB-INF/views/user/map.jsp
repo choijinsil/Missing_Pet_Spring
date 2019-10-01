@@ -14,14 +14,8 @@
 		.map{ display:inline; float:left; width: 80%; height: 600px; margin-top: 30px;}
 		.list{ display:inline; float:left; height: 500px; width: 20%; margin-top: 10px;}
 		
-		.main{color:#0B3861; font-size: 12px bold; position: absolute; margin-left: 100px;}
-		#div1{position: absolute; }
-		
-		table{border: solid #D8D8D8 5px; border-radius: 5px;}
-		td{padding: 30px;}
-		th{text-align: left;}
 		.main{color:#0B3861; font-size: 12px bold; position: absolute;}
-
+		
 			table.type11 {
 			    border-collapse: separate;
 			    border-spacing: 1px;
@@ -46,22 +40,8 @@
 			}
 		.img{width: 70px; height: 70px; margin: auto; border-bottom: 3px solid #e0e0e0; cursor: pointer;}
 		
-		#table{margin: auto; border: 1px solid #BDBDBD; border-radius: 5px; margin-top: 40px;}
 		textarea{width: 180px; height: 100px;}
 		h3{text-align: center;}
-		
-		 .hidden
-        {
-            display: none;
-        }
-        .bold
-        {
-            font-weight: bold;
-        }
-        .DivCss
-        {
-            background-color: #FFFFCC; border: thin dotted #000000; padding: 2px; margin: 0px; width: 200px;
-        }
         
         .session { width: 100px; height: 100px; }
         #section0 .swiper-container { width: 20%; height: 20%; z-index: 20; left:0; top:0; margin-top: 20px;}
@@ -133,59 +113,29 @@
 			  -moz-osx-font-smoothing: grayscale;      
 		}
 		
-		.form {
-		  position: relative;
-		  z-index: 1;
-		  background: #FFFFFF;
-		  max-width: 360px;
-		  margin: 0 auto 100px;
-		  padding: 45px;
-		  text-align: center;
-		  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-		}
-		.form input {
-		  font-family: "Roboto", sans-serif;
-		  outline: 0;
-		  background: #f2f2f2;
-		  width: 100%;
-		  border: 0;
-		  margin: 0 0 15px;
-		  padding: 15px;
-		  box-sizing: border-box;
-		  font-size: 14px;
-		}
-		.form button {
-		  font-family: "Roboto", sans-serif;
-		  text-transform: uppercase;
-		  outline: 0;
-		  background: #ff6375;
-		  width: 100%;
-		  border: 0;
-		  padding: 15px;
-		  color: #FFFFFF;
-		  font-size: 14px;
-		  -webkit-transition: all 0.3 ease;
-		  transition: all 0.3 ease;
-		  cursor: pointer;
-		}
-		.form button:hover,.form button:active,.form button:focus {
-		  background: #ff3349;
-		}
-		.form .message {
-		  margin: 15px 0 0;
-		  color: #b3b3b3;
-		  font-size: 12px;
-		}
-		.form .message a {
-		  color: #4CAF50;
-		  text-decoration: none;
-		}
-		.form .register-form {
-		  display: none;
-		}
-		.desc{
-			background:white;
-		}
+	a{
+	  font-family: "Roboto", sans-serif;
+	  text-transform: uppercase;
+	  outline: 0;
+	  background: #ff6375;
+	  width: 100%;
+	  border: 0;
+	  padding: 15px;
+	  color: #FFFFFF;
+	  font-size: 14px;
+	  -webkit-transition: all 0.3 ease;
+	  transition: all 0.3 ease;
+	  cursor: pointer;
+	}
+	
+	.comment{
+		position:absolute;
+		margin-top: 330px;
+	}
+	.comment p{
+		background-color: #ff6375;
+		color: #FFFFFF;
+	}
 	</style>
 	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	
@@ -230,11 +180,8 @@
 	<c:set var="array" value="${fn:split(pic,',')}"></c:set>
 	<div class="wrap">
 		<div id="map" class="map"></div>
-		<div id="div1">
-		<button id="bt">실종동물</button>
 	</div>
 	<div class="main">
-		<a href="/main">[메인으로]</a>
 		<a href="/main" style="text-decoration: none">메인으로</a>
 		<c:choose>
 			<c:when test="${loginId == null || loginId == vo.id}">

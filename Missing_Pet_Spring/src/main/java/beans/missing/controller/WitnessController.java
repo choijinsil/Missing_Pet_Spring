@@ -52,9 +52,6 @@ public class WitnessController {
 	
 
 	@RequestMapping("/wit/{id}/{missing_no}") // common>map.jsp 에서 목격동물등록버튼 누를때 실행되는 메소드
-	public String wit(@PathVariable String id, @PathVariable String missing_no, 
-			Model m) {
-	
 	public String wit(@PathVariable String id, @PathVariable String missing_no, Model m) {
 
 		System.out.println("id>>>" + id);
