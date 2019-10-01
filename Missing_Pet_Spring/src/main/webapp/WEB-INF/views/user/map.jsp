@@ -159,6 +159,9 @@
 		.form .register-form {
 		  display: none;
 		}
+		.desc{
+			background:white;
+		}
 	</style>
 	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	
@@ -209,17 +212,10 @@
 		<a href="/main">[메인으로]</a>
 		<c:choose>
 			<c:when test="${loginId == null || loginId == vo.id}">
-<<<<<<< HEAD
 				<a href="/wit/wit/${vo.id }/${vo.missing_no}" style="display: none;">목격신고</a> 
 			</c:when>
 			<c:otherwise>
 				<a href="/wit/wit/${vo.id }/${vo.missing_no}">목격신고</a>
-=======
-				<a href="/wit/wit/${vo.id }/${vo.missing_no}/${vo.missing_place}" style="display: none;">목격신고</a> 
-			</c:when>
-			<c:otherwise>
-				<a href="/wit/wit/${vo.id }/${vo.missing_no}/${vo.missing_place}">목격신고</a>
->>>>>>> 7ff3414fa53fb5e136244e816c73846b7899cb83
 			</c:otherwise>
 		</c:choose>
 	</div>
