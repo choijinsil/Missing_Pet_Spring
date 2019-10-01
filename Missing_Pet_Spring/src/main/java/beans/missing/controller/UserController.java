@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import beans.missing.domain.Criteria;
+import beans.missing.domain.PageDTO;
 import beans.missing.domain.UserVO;
 import beans.missing.service.UserService;
 import beans.missing.service.WitnessService;
@@ -23,7 +25,7 @@ public class UserController {
 
 	@Autowired
 	UserService service;
-	
+
 	@Autowired
 	WitnessService wit_service;
 
@@ -31,24 +33,11 @@ public class UserController {
 
 	// 메인페이지, 페이징
 	@GetMapping("")
-	public String main(Model m, HttpServletRequest request) {
-		m.addAttribute("list", service.pet_list());
-
-//		String pageNo = request.getParameter("page");
-//		int page;
-//
-//		if (pageNo == null) {
-//			page = 1;
-//		} else {
-//			page = Integer.parseInt(pageNo);
-//		}
-//
-//		request.getSession().setAttribute("list", dao.pet_list(page));
-//		request.getSession().setAttribute("page", page);// 현재 페이지 수
-//
-//		// 총 페이지 구하기
-//		int totalPage = dao.total_page();
-//		request.getSession().setAttribute("totalPage", totalPage);// 전체 페이지 수
+	public String main(Model m, Criteria cri) {
+		
+		m.addAttribute("list", service.pet_list(cri));
+		int total = service.total_page(cri);
+		m.addAttribute("pageMaker", new PageDTO(cri, total));
 
 		return "/common/main";
 	}
@@ -138,14 +127,14 @@ public class UserController {
 		session.setAttribute("missinglist", service.select_mymissing(login_id));
 		return "redirect: /main/user_mypage";
 	}
-	
+
 	@GetMapping("/user_mypost") // 게시글 보기
 	public String user_mypost(Model m) {
 		// 내게시글 목록
 		m.addAttribute("missinglist", service.select_mymissing(login_id));
 
 		// 내 목격 글 목록 조회
-		m.addAttribute("witlist",  wit_service.select_mywit(login_id));
+		m.addAttribute("witlist", wit_service.select_mywit(login_id));
 
 		// FORWARD이동
 		return "/user/mypost";
