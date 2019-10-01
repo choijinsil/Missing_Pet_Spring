@@ -18,11 +18,6 @@ public class UserServiceImpl implements UserService {
 	UserDAO dao;
 
 	@Override
-	public List<PetVO> pet_list() {
-		return dao.pet_list();
-	}
-
-	@Override
 	public boolean select_user(Map<String, String> map) {
 		return dao.select_user(map);
 	}

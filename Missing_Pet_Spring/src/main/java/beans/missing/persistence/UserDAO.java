@@ -9,7 +9,6 @@ import beans.missing.domain.UserVO;
 
 public interface UserDAO {
 
-	public List<PetVO> pet_list();
 
 	public boolean select_user(Map<String, String> map);
 
