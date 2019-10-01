@@ -20,6 +20,30 @@
 		table{border: solid #D8D8D8 5px; border-radius: 5px;}
 		td{padding: 30px;}
 		th{text-align: left;}
+		.main{color:#0B3861; font-size: 12px bold; position: absolute;}
+
+			table.type11 {
+			    border-collapse: separate;
+			    border-spacing: 1px;
+			    text-align: center;
+			    line-height: 1.5;
+			    margin: 20px 10px;
+			}
+			table.type11 th {
+			    width: 155px;
+			    padding: 10px;
+			    font-weight: bold;
+			    vertical-align: top;
+			    color: #fff;
+			    background:#ff6375 ;
+			}
+			table.type11 td {
+			    width: 155px;
+			    padding: 10px;
+			    vertical-align: top;
+			    border-bottom: 1px solid #ccc;
+			    background: #eee;
+			}
 		.img{width: 70px; height: 70px; margin: auto; border-bottom: 3px solid #e0e0e0; cursor: pointer;}
 		
 		#table{margin: auto; border: 1px solid #BDBDBD; border-radius: 5px; margin-top: 40px;}
@@ -181,6 +205,7 @@
                 $('#list').toggleClass('hidden');
             });
             
+        	       
             var mySwiper = new Swiper ('.swiper-container', {
             	slidesPerView : 1,
 			    direction: 'horizontal',
@@ -210,6 +235,7 @@
 	</div>
 	<div class="main">
 		<a href="/main">[메인으로]</a>
+		<a href="/main" style="text-decoration: none">메인으로</a>
 		<c:choose>
 			<c:when test="${loginId == null || loginId == vo.id}">
 				<a href="/wit/wit/${vo.id }/${vo.missing_no}" style="display: none;">목격신고</a> 
@@ -261,6 +287,7 @@
     </div>
 		<div id="list" class="list">
 			<table>
+			<table class="type11">
 			<tbody>
 				<tr>
 					<th>아이디</th>
@@ -278,6 +305,7 @@
 					<th>코멘트</th>
 					<td>
 						<font class="a">${vo.missing_comment}</font>
+						<textarea readonly>${vo.missing_comment}</textarea>
 					</td>
 				</tr>
 				<tr>
@@ -297,9 +325,13 @@
 		</div>
 	</div>
 	
+
 	<div class="hAddr">
         <span class="title">지도중심기준 행정동 주소정보</span>
         <span id="centerAddr"></span>
+	</div>
+	<div class="comment">
+		<p>지도를 마우스로 클릭하면 선 그리기가 시작되고<br>오른쪽 마우스를 클릭하면 선 그리기가 종료됩니다</p>
 	</div>
 	<c:set var="place" value="${vo.missing_place}"></c:set>
 	<c:set var="arr" value="${fn:split(place,',')}"></c:set>
