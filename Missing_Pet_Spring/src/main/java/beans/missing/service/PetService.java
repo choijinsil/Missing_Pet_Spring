@@ -13,9 +13,10 @@ public interface PetService {
 
 	public boolean register(PetVO vo);
 
+	public boolean update_pet_info (PetVO vo);
+
 	public List<WitnessVO> wit_InforList(int no);
 
-	public boolean update_pet_info(PetVO vo);
-
 	public boolean delete_mymissing(int missing_no);
+
 }
