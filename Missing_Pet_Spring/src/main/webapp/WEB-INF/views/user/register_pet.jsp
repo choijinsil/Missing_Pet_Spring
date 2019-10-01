@@ -8,15 +8,34 @@
 <style>
 	h3{text-align: center;}
 	hr{width: 380px;}
-	table{margin: auto; border: 1px solid #BDBDBD; border-radius: 5px; margin-top: 10px;}
-	th{text-align: left;}
-	td{padding: 20px;}
-	div{text-align: center;}
+	table.type11 {
+			    border-collapse: separate;
+			    border-spacing: 1px;
+			    text-align: center;
+			    line-height: 1.5;
+			    margin: 20px 10px;
+			    margin-left: 120px;
+			}
+			table.type11 th {
+			    width: 155px;
+			    padding: 10px;
+			    font-weight: bold;
+			    vertical-align: top;
+			    color: #fff;
+			    background:#ff6375 ;
+			}
+			table.type11 td {
+			    width: 155px;
+			    padding: 10px;
+			    vertical-align: top;
+			    border-bottom: 1px solid #ccc;
+			    background: #eee;
+			}
 	
 	.header{position: absolute; float: left;}
 	.wrap{ display:inline; width: 100%; height: 500px; border-radius: 5px; position: absolute; margin-top: 20px;}
 	.list{ display:inline; float:left; width:40%; margin-top: 30px;}
-	.image{width: 100px; height: 100px;}
+	.image{width: 100px; height: 100px; margin-left: 290px;}
 	
 	.map_wrap{ display:inline; float:left; width: 60%; height: 700px; margin-top: 30px;}
 	.title {font-weight:bold;display:block;}
@@ -25,6 +44,50 @@
     #centerAddr {display:block;margin-top:2px;font-weight: normal;}
     .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
     
+    body {
+			  background: #ff5467; /* fallback for old browsers */
+			  background: -webkit-linear-gradient(right, #ff5467, #ff5467);
+			  background: -moz-linear-gradient(right, #ff5467, #ff5467);
+			  background: -o-linear-gradient(right, #ff5467, #ff5467);
+			  background: linear-gradient(to left, #ff6375, #ffc9cf);
+			  font-family: "Roboto", sans-serif;
+			  -webkit-font-smoothing: antialiased;
+			  -moz-osx-font-smoothing: grayscale;      
+		}
+	
+	a{
+	  font-family: "Roboto", sans-serif;
+	  text-transform: uppercase;
+	  outline: 0;
+	  background: #ff6375;
+	  border: 0;
+	  padding: 15px;
+	  color: #FFFFFF;
+	  font-size: 14px;
+	  -webkit-transition: all 0.3 ease;
+	  transition: all 0.3 ease;
+	  cursor: pointer;
+	}
+    
+	button {
+	  font-family: "Roboto", sans-serif;
+	  text-transform: uppercase;
+	  outline: 0;
+	  background: #ff6375;
+	  border: 0;
+	  padding: 15px;
+	  color: #FFFFFF;
+	  font-size: 14px;
+	  -webkit-transition: all 0.3 ease;
+	  transition: all 0.3 ease;
+	  cursor: pointer;
+	  text-align: center;
+	}
+	
+	#bt1{
+		margin-left: 280px;
+	}
+
     
    	/* The Modal (background) */
        .modal {
@@ -106,7 +169,7 @@
 				} //이미지 미리보기 
 
 			
-				$('#fileForm').submit(function() { // form 데이터를  WitnessController에 전송할때 유효성검사
+				$('#fileForm').submit(function() { // form 데이터를  PetController에 전송할때 유효성검사
 					
 					
 					 var missing_pic="";	
@@ -119,7 +182,7 @@
 						}else
 							missing_pic+=$('#file_view_list').children('#minus').eq(i).text();
 						
-					}//WitnessController에 missig_pic 문자열을 보내기위한작업 (아래 hidden으로)
+					}//PetController에 missig_pic 문자열을 보내기위한작업 (아래 hidden으로)
 					
 						
 					
@@ -175,7 +238,7 @@
 					}
 					
 					
-					$.ajax({ //파일선택할때마다 WitnessRestController와 비동기 통신 
+					$.ajax({ //파일선택할때마다 PetRestController와 비동기 통신 
 						url:"/petRest/fileUp",
 						data:formData,
 						dataType:"json",
@@ -333,7 +396,7 @@
 		 		<p>필수정보값을 모두 입력하시오!!!</p>
 		 	</div>
 		</div>
-	<a class="header" href="/main">[홈페이지로]</a>
+	<a class="header" href="/main" style="text-decoration:none">홈페이지로</a>
 	<div class="wrap">
 		<div class="map_wrap">
 		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
@@ -349,38 +412,32 @@
   		<img src="#" id="img" class="image">
 			
 			<form name="fileForm" id="fileForm" action="register" method="post" enctype="multipart/form-data">
-				<table>
+				<table class="type11">
 					<tbody>
 						<tr>
-							<td>*</td>
-							<th>사진</th>
+							<th>*사진</th>
 							<td><input multiple="multiple" type="file" name="uploadFile" id="uploadFile"></td>
 						</tr>
 						<tr>
-							<td>*</td>
-							<th>실종날짜</th>
+							<th>*실종날짜</th>
 							<td><input type="date" id="missing_date" name="missing_date"></td>
 						</tr>
 						<tr>
-							<td>*</td>
-							<th>실종시간</th>
+							<th>*실종시간</th>
 							<td><input type="time" id="missing_time" name="missing_time"></td>
 						</tr>
 						<tr>
-							<td></td>
 							<th>코멘트</th>
 							<td>
 								<textarea rows="10" cols="30" name="comment"></textarea>
 							</td>
 						</tr>
 						<tr>
-							<td>*</td>
-							<th>보상금</th>
+							<th>*보상금</th>
 							<td><input name="tip"></td>
 						</tr>
 						<tr>
-							<td>*</td>
-							<th>종류</th>
+							<th>*종류</th>
 							<td colspan="3">
 								<input type="checkbox" name="type" value="강아지"> 강아지
 								<input type="checkbox" name="type" value="고양이"> 고양이
