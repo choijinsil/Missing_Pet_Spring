@@ -174,10 +174,10 @@
 		<a href="/main" style="text-decoration: none">메인으로</a>
 		<c:choose>
 			<c:when test="${loginId == null || loginId == vo.id}">
-				<a href="/wit/wit/${vo.id }/${vo.missing_no}/${vo.missing_place}" style="display: none; text-decoration: none">목격신고</a> 
+				<a href="/wit/wit/${vo.id }/${vo.missing_no}" style="display: none; text-decoration: none">목격신고</a> 
 			</c:when>
 			<c:otherwise>
-				<a href="/wit/wit/${vo.id }/${vo.missing_no}/${vo.missing_place}" style="text-decoration: none">목격신고</a>
+				<a href="/wit/wit/${vo.id }/${vo.missing_no}" style="text-decoration: none">목격신고</a>
 			</c:otherwise>
 		</c:choose>
 	</div>
