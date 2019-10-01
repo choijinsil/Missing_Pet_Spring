@@ -10,11 +10,11 @@ import beans.missing.domain.WitnessVO;
 import beans.missing.persistence.PetDAO;
 
 @Service
-public class PetServiceImpl implements PetService{
-	
+public class PetServiceImpl implements PetService {
+
 	@Autowired
 	PetDAO dao;
-	
+
 	@Override
 	public PetVO select_pet(int no) {
 		return dao.select_pet(no);

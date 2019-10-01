@@ -68,13 +68,11 @@ public class PetController {
 		if (service.register(vo)) {
 			return "redirect:/main";
 		}
-		
 		return "/user/register_pet";
 	}
 
 	@GetMapping("/map/{no}")
 	public String map(@PathVariable("no") int no, Model m, HttpServletRequest request) {
-		
 
 		List<String> latLng = service.wit_markerList(no);
 
