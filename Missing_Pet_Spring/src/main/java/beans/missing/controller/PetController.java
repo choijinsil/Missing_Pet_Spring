@@ -160,5 +160,14 @@ public class PetController {
 		}
 		return "/pet/register_upform";
 	}
+	
+	@GetMapping("/delete_mymissing") //mypage 게시글 삭제
+	public String delete_mymissing(int missing_no) {
+		if(service.delete_mymissing(missing_no)) {
+			System.out.println("게시글 삭제!!");
+			return "redirect:/main/user_mypost";	
+		}
+		return "redirect:/main/user_mypost";
+	}
 
 }

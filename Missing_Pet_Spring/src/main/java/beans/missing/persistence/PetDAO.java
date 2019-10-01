@@ -13,5 +13,7 @@ public interface PetDAO {
 	public boolean register(PetVO vo);
 	
 	public boolean update_pet_info(PetVO vo);
+
+	public boolean delete_mymissing(int missing_no);
 	
 }

@@ -34,4 +34,9 @@ public class PetServiceImpl implements PetService{
 		return dao.update_pet_info(vo);
 	}
 
+	@Override
+	public boolean delete_mymissing(int missing_no) {
+		return dao.delete_mymissing(missing_no);
+	}
+
 }

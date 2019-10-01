@@ -55,5 +55,12 @@
 		wit_info
 		where missing_no = #{missing_no}
 	</select>
+	
+	<!-- 공고글 삭제 -->
+	<!-- 실종신고 공고게시글 삭제 -->
+	<delete id="delete_mymissing">
+	delete from missing_info
+	where missing_no=#{missing_no}
+	</delete>
 
 </mapper>
