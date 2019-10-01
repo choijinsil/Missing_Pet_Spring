@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import beans.missing.domain.PetVO;
+import beans.missing.domain.WitnessVO;
 import beans.missing.service.PetService;
 
 
@@ -74,15 +75,55 @@ public class PetController {
 	@GetMapping("/map/{no}")
 	public String map(@PathVariable("no") int no, Model m, HttpServletRequest request) {
 
+		List<WitnessVO> witInfor=service.wit_InforList(no);
 		List<String> latLng = service.wit_markerList(no);
 
+		List<String> AllContent=new ArrayList<>();
+		
+		System.out.println("witInfor>>>>"+witInfor);
+		
+		for(int i=0;i<witInfor.size();i++) {
+			String[] Images=witInfor.get(i).getMissing_pic().split(",");
+			
+			
+
+			
+			String ImageContent=	"<div class=wrap>" +   
+	        "        <div class=body>" + 
+	        "            <div class=img1>" ;
+			for(int j=0;j<Images.length;j++) {
+				ImageContent+=" <img src=http://localhost/images/witimage/"+Images[j]+" width=73 height=70>"; 
+	       
+			}
+				ImageContent+= "</div>" ;
+				
+				
+			String bodyContent=
+	        "            <div class=desc>" + 
+	        "목격번호:          <div class=wit_no>"+witInfor.get(i).getWit_no()+"</div>" + 
+	        "목격날짜:          <div class=wit_date>"+witInfor.get(i).getFind_date()+"</div>" + 
+	    	"코멘트:           <div class=comment>"+witInfor.get(i).getWit_comment()+"</div>"+
+	    	"목격자:            <div class=id>"+witInfor.get(i).getId()+"</div>"+
+	    	"공고번호:           <div class=missing_no>"+no+"</div>"+
+	        "            </div>" + 
+	        "        </div>" + 
+	        "    </div>" +    
+	        "</div>";
+		
+			AllContent.add(i, "{\"content\":\""+ImageContent+bodyContent+"\"}");
+			
+	
+		}// 커스텀오버레이에 들어가는 정보 (json형식으로) 입력받기
+		
 		for(int i=0;i<latLng.size();i++) { //List에 다음페이지에서 key값 "positions"와 "number"를 이용해서 value값을 찾게끔 저장
 			latLng.set(i, "{\"positions\":new kakao.maps.LatLng("+latLng.get(i)+"),\"number\":"+(i+1)+"}");
 		}
 		
 		m.addAttribute("vo", service.select_pet(no));
 		request.getSession().setAttribute("latLng", latLng);
+		request.getSession().setAttribute("AllContet", AllContent);
 		
+		System.out.println("AllContent>>"+AllContent);
 
 		return "/user/map";
 	}
