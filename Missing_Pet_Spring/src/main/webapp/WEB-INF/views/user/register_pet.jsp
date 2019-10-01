@@ -301,7 +301,6 @@
 						
 						success:function(data){
 							if(data=='SUCCESS'){//응답결과
-								alert(data);
 								$("#file_view_list div").eq(index).detach();
 								saveImageCount--;
 							}else{
@@ -490,7 +489,6 @@
 		    
 		    // 클릭한 위도, 경도 정보를 가져옵니다 
 		    var latlng = mouseEvent.latLng; 
-		    alert(mouseEvent.latLng);
 		    // 마커 위치를 클릭한 위치로 옮깁니다"C:/Users/Playdata/Desktop/web/2/index4.html"
 		    marker.setPosition(latlng);
 		    

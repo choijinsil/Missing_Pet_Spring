@@ -18,10 +18,6 @@ public class UserDAOImpl implements UserDAO {
 	@Autowired
 	SqlSession sqlSession;
 
-	@Override
-	public List<PetVO> pet_list() {
-		return sqlSession.selectList("user.pet_list");
-	}
 
 	@Override
 	public boolean select_user(Map<String, String> map) {
@@ -75,7 +71,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public List<PetVO> pet_list(Criteria cri) {
-		RowBounds bounds = new RowBounds((cri.getPageNum() - 1) * 6, 6);
+		RowBounds bounds = new RowBounds((cri.getPageNum() - 1) * 10, 6);
 		return sqlSession.selectList("user.pet_list", cri, bounds);
 	}
 
