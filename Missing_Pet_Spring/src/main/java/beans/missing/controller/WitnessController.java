@@ -50,19 +50,24 @@ public class WitnessController {
 	
 	
 
-	@RequestMapping("/wit/{id}/{missing_no}/{missing_place}") // common>map.jsp 에서 목격동물등록버튼 누를때 실행되는 메소드
-	public String wit(@PathVariable String id, @PathVariable String missing_no, @PathVariable String missing_place,
+	@RequestMapping("/wit/{id}/{missing_no}") // common>map.jsp 에서 목격동물등록버튼 누를때 실행되는 메소드
+	public String wit(@PathVariable String id, @PathVariable String missing_no, 
 			Model m) {
 
 		System.out.println("id>>>" + id);
-		System.out.println("missing_no>>>" + missing_no);
+		//System.out.println("missing_no>>>" + missing_no);
 
+		
 		String missingno = missing_no;
-		String place = missing_place;
+		
+		
+		
+		String place = witService.latLng(missing_no);
 		String latitude = place.split(",")[0];
 		String longitude = place.split(",")[1];
-	
 		
+		
+		System.out.println("missingno>>>"+missing_no);
 
 		m.addAttribute("latitude", latitude);
 		m.addAttribute("longitude", longitude);

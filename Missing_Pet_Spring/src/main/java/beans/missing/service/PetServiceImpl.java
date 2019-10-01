@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import beans.missing.domain.PetVO;
+import beans.missing.domain.WitnessVO;
 import beans.missing.persistence.PetDAO;
 
 @Service
@@ -32,6 +33,12 @@ public class PetServiceImpl implements PetService{
 	@Override
 	public boolean update_pet_info(PetVO vo) {
 		return dao.update_pet_info(vo);
+	}
+
+	@Override
+	public List<WitnessVO> wit_InforList(int no) {
+		
+		return dao.wit_InforList(no);
 	}
 
 }

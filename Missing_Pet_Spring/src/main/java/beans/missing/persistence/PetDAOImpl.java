@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import beans.missing.domain.PetVO;
+import beans.missing.domain.WitnessVO;
 
 @Repository
 public class PetDAOImpl implements PetDAO{
@@ -38,6 +39,12 @@ public class PetDAOImpl implements PetDAO{
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public List<WitnessVO> wit_InforList(int no) {
+		
+		return sqlSession.selectList("pet.wit_InforList", no);
 	}
 
 }

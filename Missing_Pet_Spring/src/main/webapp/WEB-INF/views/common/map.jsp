@@ -90,7 +90,7 @@
 		var container = document.getElementById('map');
 		
 		var latitude = '${latitude}'//위도
-	     var longitude = '${longitude}';//경도
+	     var longitude ='${longitude}';//경도
 		
 		var options = {
 			center: new kakao.maps.LatLng(latitude, longitude),

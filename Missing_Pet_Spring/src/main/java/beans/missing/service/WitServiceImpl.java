@@ -33,6 +33,13 @@ public class WitServiceImpl implements WitService {
 		return dao.printData();
 	}
 
+
+	@Override
+	public String latLng(String missing_no) {
+		
+		return dao.latLng(missing_no);
+	}
+
 	
 
 }

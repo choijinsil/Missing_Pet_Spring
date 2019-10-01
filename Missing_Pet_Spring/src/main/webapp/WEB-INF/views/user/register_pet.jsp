@@ -303,7 +303,7 @@
 		    
 		    // 클릭한 위도, 경도 정보를 가져옵니다 
 		    var latlng = mouseEvent.latLng; 
-		    
+		    alert(mouseEvent.latLng);
 		    // 마커 위치를 클릭한 위치로 옮깁니다"C:/Users/Playdata/Desktop/web/2/index4.html"
 		    marker.setPosition(latlng);
 		    
@@ -320,7 +320,7 @@
 		        if (status === kakao.maps.services.Status.OK) {
 		            var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
 		            detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
-		            
+		           
 		            var content = '<div class="bAddr">' +
 		                            '<span class="title">법정동 주소정보</span>' + 
 		                            detailAddr + 

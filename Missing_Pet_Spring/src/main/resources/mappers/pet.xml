@@ -55,5 +55,14 @@
 		wit_info
 		where missing_no = #{missing_no}
 	</select>
+	
+	
+	<!-- 목격동물 마커에 mouse over시에 목격동물 정보 커스텀오버레이에 표시 -->
+	<select id="wit_InforList" resultType="WitnessVO">
+		select wit_no,missing_pic,find_date,wit_place,wit_comment,id
+		from wit_info
+		where missing_no=#{missing_no}
+	
+	</select>
 
 </mapper>
