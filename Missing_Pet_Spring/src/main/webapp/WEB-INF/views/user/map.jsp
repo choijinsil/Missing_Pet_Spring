@@ -136,6 +136,10 @@
 		background-color: #ff6375;
 		color: #FFFFFF;
 	}
+	
+	.desc{
+		background: white;
+	}
 	</style>
 	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	
@@ -233,7 +237,6 @@
 		</div>
     </div>
 		<div id="list" class="list">
-			<table>
 			<table class="type11">
 			<tbody>
 				<tr>
@@ -270,8 +273,6 @@
 			</tbody>
 			</table>
 		</div>
-	</div>
-	
 
 	<div class="hAddr">
         <span class="title">지도중심기준 행정동 주소정보</span>
