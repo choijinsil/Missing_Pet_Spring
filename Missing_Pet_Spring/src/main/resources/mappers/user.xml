@@ -9,6 +9,11 @@
 		order by missing_no desc
 	</select>
 
+	<select id="total_page" resultType="int">
+		select
+		COUNT(*) from
+		missing_info
+	</select>
 	<!-- 로그인시 회원조회 -->
 	<select id="select_user" resultType="Integer">
 		select count(*) from
@@ -48,10 +53,7 @@
 		#{end}
 	</select>
 
-	<select id="total_page" resultType="int">
-		select
-		ceil(count(missing_no)/6) from missing_info
-	</select>
+
 
 	<!--MYPAGE.JSP 회원정보수정 -->
 	<update id="update_myinfo">
@@ -64,4 +66,7 @@
 	<delete id="withdraw_user">
 		delete from user_info where id=#{id}
 	</delete>
+
+
+
 </mapper>

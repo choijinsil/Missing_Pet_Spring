@@ -3,10 +3,12 @@ package beans.missing.persistence;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import beans.missing.domain.Criteria;
 import beans.missing.domain.PetVO;
 import beans.missing.domain.UserVO;
 
@@ -22,9 +24,9 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public List<UserVO> select_user_info(int page) {
-		// sqlSession.selectList("admin.select_user_info", 10 * (page - 1), 10)
-		return sqlSession.selectList("admin.select_user_info", page);
+	public List<UserVO> select_user_info(Criteria cri) {
+		RowBounds bounds = new RowBounds((cri.getPageNum() - 1) * 10, 10);
+		return sqlSession.selectList("admin.select_user_info", cri, bounds);
 	}
 
 	@Override
@@ -33,12 +35,12 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public Integer select_user_total_page() {
+	public Integer select_user_total_page(Criteria cri) {
 		return sqlSession.selectOne("admin.select_user_total_page");
 	}
 
 	@Override
-	public Integer select_wit_total_Page() {
+	public Integer select_wit_total_Page(Criteria cri) {
 		return sqlSession.selectOne("admin.select_wit_total_Page");
 	}
 
@@ -59,13 +61,20 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public List<PetVO> select_pet_list(int page) {
-		return sqlSession.selectList("admin.select_pet_list", page);
+	public List<PetVO> select_pet_list(Criteria cri) {
+		RowBounds bounds = new RowBounds((cri.getPageNum() - 1) * 10, 10);
+		return sqlSession.selectList("admin.select_pet_list",  cri, bounds);
 	}
 
 	@Override
-	public List<PetVO> select_wit_list(int page) {
-		return sqlSession.selectList("admin.select_wit_list", page);
+	public List<PetVO> select_wit_list(Criteria cri) {
+		RowBounds bounds = new RowBounds((cri.getPageNum() - 1) * 10, 10);
+		return sqlSession.selectList("admin.select_wit_list",  cri, bounds);
+	}
+
+	@Override
+	public Integer select_pet_total_Page(Criteria cri) {
+		return sqlSession.selectOne("admin.select_pet_total_Page");
 	}
 
 }

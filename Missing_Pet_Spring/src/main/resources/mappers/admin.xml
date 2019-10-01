@@ -12,21 +12,11 @@
 
 	<!-- 수정할 회원 정보 조회 -->
 	<select id="select_update_info" resultType="UserVO">
-		SELECT id, name, pass, email, tel, address, black
+		SELECT id, name,
+		pass, email, tel, address, black
 		FROM
 		user_info
 		WHERE id = #{id}
-	</select>
-
-
-	<!-- pagingBean 조회(user) -->
-	<select id="select_user_total_page" resultType="int">
-		SELECT ceil(count(*)/10) FROM user_info
-	</select>
-
-	<!-- 실종신고 페이지 조회(user) -->
-	<select id="select_wit_total_Page" resultType="int">
-		SELECT ceil(count(*)/10) FROM user_info
 	</select>
 
 	<!-- 회원 정보 수정 -->
@@ -57,11 +47,38 @@
 		wit_no,missing_pic,find_date,wit_place,wit_comment
 		FROM wit_info
 	</select>
-	
+
 	<!-- 회원 아이디, 이름 검색 -->
 	<select id="search_user" resultType="UserVO">
-		select * from user_info 
+		select * from user_info
 		where id like '%'||#{id}||'%'
 		or name like '%'||#{id}||'%'
 	</select>
+
+
+	<!-- pagingBean 조회(user) -->
+	<select id="select_user_total_page" resultType="int">
+		SELECT COUNT(*) FROM user_info
+	</select>
+
+	<!-- 실종신고 페이지 조회(user) -->
+	<select id="select_wit_total_Page" resultType="int">
+		SELECT COUNT(*) FROM wit_info
+	</select>
+	
+	<!-- 실종신고 페이지 조회(user) -->
+	<select id="select_pet_total_Page" resultType="int">
+		SELECT COUNT(*) FROM missing_info
+	</select>
+
+
+
+
+
+
+
+
+
+
+
 </mapper>

@@ -39,6 +39,8 @@ public class PetServiceImpl implements PetService{
 	public List<WitnessVO> wit_InforList(int no) {
 		
 		return dao.wit_InforList(no);
+	public boolean delete_mymissing(int missing_no) {
+		return dao.delete_mymissing(missing_no);
 	}
 
 }

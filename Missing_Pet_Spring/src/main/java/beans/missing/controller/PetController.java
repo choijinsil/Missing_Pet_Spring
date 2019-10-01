@@ -60,25 +60,9 @@ public class PetController {
 		
 		String comment = request.getParameter("comment");
 		String tip = request.getParameter("tip");
-		String type = request.getParameter("type");
-		
-		Iterator<String> itr=mtfRequest.getFileNames(); //파일들을 iterator에 넣음
-		
-		List list = new ArrayList();
-		while(itr.hasNext()) {//파일을 하나씩 불러온다
-			MultipartFile mpf = mtfRequest.getFile(itr.next());
-				list.add(mpf.getOriginalFilename());
-		}
-		
-		String images = "";
-		for(int i=0; i<list.size();i++) {
-			if(i == list.size()-1) {
-				images += list.get(i);
-			}else {
-				images += list.get(i) +",";
-			}
-		}
-		
+		String type = request.getParameter("type");	
+		String images = request.getParameter("missing_pic");
+
 		PetVO vo = new PetVO(0,id,images,null,place,to,type,comment,tip,null,null);
 
 		if (service.register(vo)) {
@@ -175,6 +159,15 @@ public class PetController {
 			return "redirect: /main/user_mypost";
 		}
 		return "/pet/register_upform";
+	}
+	
+	@GetMapping("/delete_mymissing") //mypage 게시글 삭제
+	public String delete_mymissing(int missing_no) {
+		if(service.delete_mymissing(missing_no)) {
+			System.out.println("게시글 삭제!!");
+			return "redirect:/main/user_mypost";	
+		}
+		return "redirect:/main/user_mypost";
 	}
 
 }

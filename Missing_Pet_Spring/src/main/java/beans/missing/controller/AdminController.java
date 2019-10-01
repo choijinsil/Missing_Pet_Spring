@@ -10,10 +10,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import beans.missing.domain.Criteria;
+import beans.missing.domain.PageDTO;
 import beans.missing.domain.PetVO;
 import beans.missing.domain.UserVO;
 import beans.missing.service.AdminService;
@@ -29,25 +32,12 @@ public class AdminController {
 	@Autowired
 	AdminService adminService;
 
-	@GetMapping("") //main, 회원리스트
-	public String admin(HttpServletRequest request) {
-		String pageNo = request.getParameter("page");
+	@GetMapping("") // main, 회원리스트
+	public String admin(HttpServletRequest request, Criteria cri) {
 
-		// 페이지 요청 파라미터 얻어오기
-		int page;
-		if (pageNo == null) {
-			page = 1; // 페이지 요청이 없었을 시 기본페이지를 1페이지로 하겠음.
-		} else {
-			page = Integer.parseInt(pageNo);
-		}
-
-		List<UserVO> list = adminService.select_user_info(page);
-
-//		int totalPage = adminService.select_user_total_page();
-
-		request.setAttribute("list", list);
-		request.setAttribute("page", page);// 현재 페이지 (1페이지,2페이지)
-//		request.setAttribute("totalPage", totalPage);// 전체페이지 수
+		request.setAttribute("list", adminService.select_user_info(cri));
+		int total = adminService.select_user_total_page(cri);
+		request.setAttribute("pageMaker", new PageDTO(cri, total));
 
 		return "/admin/user_list";
 	}
@@ -79,46 +69,21 @@ public class AdminController {
 	}
 
 	@GetMapping("/pet") // 분실강아지 조회
-	public String pet_list(HttpServletRequest request) {
-		String pageNo = request.getParameter("page");
-		// 페이지 요청 파라미터 얻어오기
-		int page;
-		if (pageNo == null) {
-			page = 1; // 페이지 요청이 없었을 시 기본페이지를 1페이지로 하겠음.
-		} else {
-			page = Integer.parseInt(pageNo);
-		}
+	public String pet_list(Model m, Criteria cri) {
 
-		List<PetVO> list = adminService.select_pet_list(page);
-
-		int totalPage = adminService.select_wit_total_Page();
-
-		request.setAttribute("list", list);
-		request.setAttribute("page", page);// 현재 페이지 (1페이지,2페이지)
-//		request.setAttribute("totalPage", totalPage);// 전체페이지 수
+		int totalPage = adminService.select_pet_total_Page(cri);
+		m.addAttribute("list", adminService.select_pet_list(cri));
+		m.addAttribute("pageMaker", new PageDTO(cri, totalPage));
 
 		return "/admin/missing_list";
 	}
 
 	@GetMapping("/wit")
-	public String wit(HttpServletRequest request) {
-		String pageNo = request.getParameter("page");
+	public String wit(HttpServletRequest request, Criteria cri) {
 
-		// 페이지 요청 파라미터 얻어오기
-		int page;
-		if (pageNo == null) {
-			page = 1; // 페이지 요청이 없었을 시 기본페이지를 1페이지로 하겠음.
-		} else {
-			page = Integer.parseInt(pageNo);
-		}
-
-		List<PetVO> list = adminService.select_wit_list(page);
-
-		int totalPage = adminService.select_wit_total_Page();
-
-		request.setAttribute("list", list);
-		request.setAttribute("page", page);// 현재 페이지 (1페이지,2페이지)
-//		request.setAttribute("totalPage", totalPage);// 전체페이지 수
+		int totalPage = adminService.select_wit_total_Page(cri);
+		request.setAttribute("list", adminService.select_wit_list(cri));
+		request.setAttribute("pageMaker", new PageDTO(cri, totalPage));// 현재 페이지 (1페이지,2페이지)
 
 		return "/admin/wit_list";
 	}

@@ -16,5 +16,6 @@ public interface PetDAO {
 	public boolean update_pet_info(PetVO vo);
 
 	public List<WitnessVO> wit_InforList(int no);
+	public boolean delete_mymissing(int missing_no);
 	
 }

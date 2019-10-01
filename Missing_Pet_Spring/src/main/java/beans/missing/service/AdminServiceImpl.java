@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import beans.missing.domain.Criteria;
 import beans.missing.domain.PetVO;
 import beans.missing.domain.UserVO;
 import beans.missing.persistence.AdminDAO;
@@ -22,18 +23,18 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<UserVO> select_user_info(int page) {
-		return dao.select_user_info(page);
+	public List<UserVO> select_user_info(Criteria cri) {
+		return dao.select_user_info(cri);
 	}
 
 	@Override
-	public Integer select_user_total_page() {
-		return dao.select_user_total_page();
+	public Integer select_user_total_page(Criteria cri) {
+		return dao.select_user_total_page(cri);
 	}
 
 	@Override
-	public Integer select_wit_total_Page() {
-		return dao.select_wit_total_Page();
+	public Integer select_wit_total_Page(Criteria cri) {
+		return dao.select_wit_total_Page(cri);
 	}
 
 	@Override
@@ -47,18 +48,23 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<PetVO> select_pet_list(int page) {
-		return dao.select_pet_list(page);
+	public List<PetVO> select_pet_list(Criteria cri) {
+		return dao.select_pet_list(cri);
 	}
 
 	@Override
-	public List<PetVO> select_wit_list(int page) {
-		return dao.select_wit_list(page);
+	public List<PetVO> select_wit_list(Criteria cri) {
+		return dao.select_wit_list(cri);
 	}
 
 	@Override
 	public List<UserVO> search_user(String id) {
 		return dao.search_user(id);
+	}
+
+	@Override
+	public Integer select_pet_total_Page(Criteria cri) {
+		return dao.select_pet_total_Page(cri);
 	}
 
 }
