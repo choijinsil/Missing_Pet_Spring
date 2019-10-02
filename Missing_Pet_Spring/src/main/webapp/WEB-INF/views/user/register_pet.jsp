@@ -87,6 +87,10 @@
 	#bt1{
 		margin-left: 280px;
 	}
+	
+	#file_view_list{
+		position: absolute; margin-left:130px;
+	}
 
     
    	/* The Modal (background) */
@@ -408,8 +412,8 @@
 		<div class="list">
 		<h3>실종동물등록</h3><hr style="background-color: yellow">
 
+		<div id="file_view_list"></div>	
   		<img src="#" id="img" class="image">
-			
 			<form name="fileForm" id="fileForm" action="register" method="post" enctype="multipart/form-data">
 				<table class="type11">
 					<tbody>

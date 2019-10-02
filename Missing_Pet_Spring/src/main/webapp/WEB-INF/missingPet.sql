@@ -85,7 +85,7 @@ values ('admin', '관리자', '1234', '.', '.', '.', 'N');
 ------------------------------------------------- 샘플 데이터 --------------------------------------------
 -- user_info
 insert into user_info (id, name, pass, email, tel, address, black) 
-values ('orange', '오렌지', '1234', 'orange@gmail.com', '010-1234-4567', '서울시 마포구 공덕동 롯데캐슬프레지던트', 'N');
+values ('orange', '오렌지', 'encore7276!', 'orange@gmail.com', '010-1234-4567', '서울시 마포구 공덕동 롯데캐슬프레지던트', 'N');
 insert into user_info (id, name, pass, email, tel, address, black) 
 values ('apple20', 'app12', '1234', 'apple20@gmail.com', '010-1234-4567', '서울시 노원구 하계동 롯데우성아파트', 'N');
 insert into user_info (id, name, pass, email, tel, address, black) 

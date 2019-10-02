@@ -89,22 +89,20 @@ public class PetController {
 
 			
 			String ImageContent=	"<div class=wrap>" +   
-	        "        <div class=body>" + 
-	        "            <div class=img1>" ;
-			for(int j=0;j<Images.length;j++) {
-				ImageContent+=" <img src=http://localhost/images/witimage/"+Images[j]+" width=73 height=70>"; 
-	       
-			}
-				ImageContent+= "</div>" ;
-				
+	        "        <div class=body>";
 				
 			String bodyContent=
-	        "            <div class=desc>" + 
-	        "목격번호:          <div class=wit_no>"+witInfor.get(i).getWit_no()+"</div>" + 
-	        "목격날짜:          <div class=wit_date>"+witInfor.get(i).getFind_date()+"</div>" + 
-	    	"코멘트:           <div class=comment>"+witInfor.get(i).getWit_comment()+"</div>"+
-	    	"목격자:            <div class=id>"+witInfor.get(i).getId()+"</div>"+
-	    	"공고번호:           <div class=missing_no>"+no+"</div>"+
+	        " <div class=desc>" +
+			"<table class=type11><tbody>"+
+	        "<tr><th>사진</th><td>";
+	        for(int j=0;j<Images.length;j++) {
+				bodyContent+="<img src=http://localhost/images/witimage/"+Images[j]+" width=73 height=70 padding=5>"; 
+			}
+	        bodyContent+="</td></tr>"+
+	        "<tr><th>목격날짜</th><td>"+witInfor.get(i).getFind_date()+"</td></tr>"+
+	        "<tr><th>코멘트</th><td><textarea readonly>"+witInfor.get(i).getWit_comment()+"</textarea></td></tr>"+
+	        "<tr><th>목격자</th><td>"+witInfor.get(i).getId()+"</td></tr>"+
+	    	"</tbody></table>"+
 	        "            </div>" + 
 	        "        </div>" + 
 	        "    </div>" +    

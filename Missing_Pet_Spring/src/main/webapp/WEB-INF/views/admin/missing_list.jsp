@@ -69,7 +69,7 @@
 			<tr>
 				<td>${pet.missing_no }</td>
 				<td>${pet.id }</td>
-				<td><img src="${array[0] }" class='max-small'></img></td>
+				<td><img src="/images/missingImage/${array[0]}" class='max-small'></img></td>
 				<td>
 				<fmt:formatDate value="${pet.write_date }" pattern="yyyy-MM-dd HH:MM"/>
 				</td>

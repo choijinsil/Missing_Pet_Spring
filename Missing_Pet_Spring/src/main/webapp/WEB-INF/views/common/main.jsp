@@ -196,7 +196,7 @@
 	</form>
 	
 	<div class="footer wrap">
-			<div class="title">beans:beans</div>
+			<div class="title">beans:beans</div><br>
 			<div class="context">
 			
 				우린 누구인가? <br/><br/>
